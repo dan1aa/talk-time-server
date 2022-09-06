@@ -134,7 +134,8 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
                     res.render('success', {
                         cssFileName: 'feedback',
                         url,
-                        title: 'Success'
+                        title: 'Success',
+                        link: LINK
                     })
                 })
         }
@@ -155,7 +156,8 @@ router.get('/feedbacks/:url/:name', async (req, res) => {
         cssFileName: 'feedback',
         name,
         feedbacks,
-        url
+        url,
+        link: LINK
     })
 })
 
