@@ -1,0 +1,21 @@
+<h1>Leave feedback about meeting participants!</h1>
+<div class="list-container">
+    {{#each users}}
+    <div>
+        <div class="user-info">
+            <img class="user-avatar" src="{{avatar}}" alt="">
+            <span class="username-span">{{name}}</span>
+        </div>
+        <div>
+            <button class="see-feedback">See feedbacks</button>
+            <button class="leave-feedback">Leave feedback</button>
+        </div>
+    </div>
+    {{/each}}
+    <span>If not all users who are in the meeting are displayed here, click this button</span><br />
+    <button class="refresh">Refresh</button>
+</div>
+<footer class="question-footer">
+    <button class="question">!</button>
+</footer>
+<script src="{{link}}/main.js"></script>

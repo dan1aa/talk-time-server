@@ -1,0 +1,13 @@
+<h1 class="feedback-title">Your feedback about {{name}}</h1>
+<span style="text-align: center; margin-bottom: 10px;">Please enter your name from google meet, because if you <br/>enter not correct name, feedback won`t be posted</span>
+<form action="/newfeedback/{{url}}/{{name}}" method="POST" enctype="multipart/form-data">
+    <input required type="text" name="sender" placeholder="Enter your name">
+    <textarea minlength="100" maxlength="400" required name="feedback" placeholder="Enter your feedback"></textarea>
+    <span class="characters-count"></span>
+    <label for="rating">Select rate from 0 to 5</label>
+    <input required name="rating" type="number" value="0" max="5" min="0">
+    <label for="file">If you have some photo or video that can be useful it this feedback you can put it here</label>
+    <input class="file" name="file" type="file">
+    <button class="submit" type="submit">Send</button>
+</form>
+<script src="{{link}}/createFeedback.js"></script>

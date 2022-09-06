@@ -12,14 +12,15 @@
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.5",
     "body-parser": "^1.20.0",
-    "chart.js": "^3.9.1",
-    "chartjs-node-canvas": "^4.1.6",
+    "busboy": "^1.6.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
+    "formidable": "^2.0.1",
     "handlebars": "^4.7.7",
     "mongoose": "^6.5.0",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.19"
   }
 }
