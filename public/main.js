@@ -37,9 +37,26 @@ window.onload = function() {
     const questionButton = document.querySelector('.question');
     const modal = document.querySelector('.question-modal');
     const container = document.querySelector('.container')
-    const closeModal = document.querySelector('.close-modal')
+    const closeModal = document.querySelector('.close-modal');
+    const openBadgesModal = document.querySelectorAll('.see-badges');
+    const closeBadges = document.querySelectorAll('.close-badge');
     let URL = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
     const leaveFeedbackButtons = document.querySelectorAll('.leave-feedback')
+
+    openBadgesModal.forEach(button => {
+        button.onclick = function() {
+            const modal = this.nextElementSibling;
+            modal.style.display = 'flex'
+        }
+    })
+
+    closeBadges.forEach(button => {
+        button.onclick = function() {
+            const modal = this.parentElement.parentElement;
+            modal.style.display = 'none'
+        }
+    })
+
     leaveFeedbackButtons.forEach(button => {
         dynamic(button, 'newfeedback')
     })

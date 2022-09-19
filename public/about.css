@@ -9,7 +9,7 @@
     display: none;
 }
 .about-partial {
-    display: none;
+    display: none !important;
 }
 .container {
     width: 100%;

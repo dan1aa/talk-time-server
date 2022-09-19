@@ -4,6 +4,7 @@ const User = require('../models/User')
 let multer = require('multer')
 const path = require('path')
 
+
 let storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function (req, file, done) {
@@ -41,7 +42,7 @@ router.get('/feedbacks/:url', async (req, res) => {
             users,
             title: 'Feedbacks',
             link: LINK,
-            isMain: true
+            isMain: true,
         })
     }
 })
@@ -57,7 +58,8 @@ router.post('/feedbacks/:url', async (req, res) => {
                     const newUser = new User({
                         name: users[i].name,
                         url,
-                        avatar: users[i].img
+                        avatar: users[i].img,
+                        badges: []
                     })
 
                     await newUser.save()
@@ -96,9 +98,10 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         if (err) {
             throw new Error(err)
         }
-        
-        const { sender, rating, feedback } = req.body;
+
+        let { sender, rating, feedback, badge } = req.body;
         let sendUser = await User.findOne({ name: sender })
+        badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
         if (!sendUser) {
             res.status(404).render('notfound', {
                 cssFileName: 'feedback',
@@ -115,6 +118,11 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
             const url = req.url.split('/')[req.url.split('/').length - 2];
             const receiver = req.url.split('/')[req.url.split('/').length - 1].replaceAll("%20", " ");
 
+
+            if (badge) {
+                await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
+            }
+
             let newFeedback = new Feedback({
                 sender,
                 receiver,
@@ -125,7 +133,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
                 feedbackImg: ''
             });
 
-            if(req.file) {
+            if (req.file) {
                 newFeedback.feedbackImg = '/uploads/' + req.file.filename || '';
             }
 

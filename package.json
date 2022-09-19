@@ -17,10 +17,12 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
+    "express-http-proxy": "^1.6.3",
     "formidable": "^2.0.1",
     "handlebars": "^4.7.7",
     "mongoose": "^6.5.0",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "speech-recorder": "^2.1.0"
   }
 }

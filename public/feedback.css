@@ -7,27 +7,12 @@
     font-family: 'Poppins', sans-serif;
 }
 body {
-    overflow-x: none;
+    overflow-x: hidden;
+}
+a {
+    text-decoration: none;
+}
 
-}
-.about-partial {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 20px;
-    position: fixed;
-    top: 0; 
-    color: black;
-}
-.about-partial a {
-    margin-right: 20px;
-    color: black;
-}
-.list-container + h1 {
-    margin-bottom: 40px;
-}
 
 ::-webkit-scrollbar {
     width: 3px;
@@ -56,12 +41,12 @@ body {
 
 .list-container {
     width: 800px;
-    height: 600px;
+    height: calc(100vh - 50px);
     overflow-y: scroll;
-    padding: 15px 20px 15px 20px;
+    padding: 0px 20px 15px 20px;
 }
 
-.list-container > div {
+.user-item {
     width: 100%;
     height: 100px;
     background: white;
@@ -72,18 +57,17 @@ body {
     align-items: center;
     padding: 0 10px 0 10px;
 }
-
-.list-container>div:not(:last-child) {
+.user-item:not(:last-child) {
     margin-bottom: 20px;
 }
-.list-container > div > div:nth-child(2) {
-    width: 45%;
+.user-buttons {
+    width: 65%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
-.list-container > div > div:nth-child(2) > button {
+.user-buttons > button {
     border: none;
     outline: none;
     border: 1px solid rgb(8, 123, 172);
@@ -94,36 +78,41 @@ body {
     background: transparent;
     color: rgb(8, 123, 172);
     transition: .3s all ease;
+    margin-right: 10px;
 }
-.list-container > div > div:nth-child(2) > button:hover {
+.user-buttons > button:hover {
     background: rgb(8, 123, 172);
     color: white;
 }
-a {
-    text-decoration: none;
-}
 
 /*FORM*/
-form {
+.form-wrapper {
+    height: calc(100vh - 50px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.feedback-form {
     width: 400px;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
-form input {
+.feedback-form input {
     height: 40px;
     border: 1px solid black;
     outline: none;
     border-radius: 5px;
     margin-bottom: 20px;
-    padding: 8px;
+    padding: 4px;
 }
-form input:not([type="file"]) {
+.feedback-form input:not([type="file"]) {
     padding: 10px;
 }
-form textarea {
-    height: 200px;
+.feedback-form textarea {
+    height: 150px;
     resize: none;
     padding: 10px;
     outline: none;
@@ -132,6 +121,11 @@ form textarea {
 .characters-count {
     margin-bottom: 20px;
     font-size: 12px;
+}
+.feedback-form select {
+    margin-bottom: 20px;
+    padding: 5px;
+    cursor: pointer;
 }
 .submit {
     border: none;
@@ -144,11 +138,11 @@ form textarea {
     color: rgb(43, 149, 194);
     transition: .6s all ease;
 }
-form button:hover {
+.submit:hover {
     background: rgb(43, 149, 194);
     color: white;
 }
-form label {
+.feedback-form label {
     margin-bottom: 5px;
 }
 
@@ -183,6 +177,10 @@ button > a {
     box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);
     margin-bottom: 15px;
 }
+.title-of-one {
+    text-align: center;
+    margin-bottom: 20px;
+}
 .text {
     width: 70%;
     height: 100%;
@@ -196,11 +194,11 @@ button > a {
 }
 .feedbacks {
     width: 800px;
-    height: 600px;
+    height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    padding: 15px 20px 15px 20px;
+    padding: 0px 20px 15px 20px;
 }
 .sender {
     width: 30%;
@@ -384,4 +382,111 @@ button > a {
 }
 .feedback-img {
     width: 256px;
+}
+
+/*BADGES*/
+.badges-title {
+    margin-bottom: 5px;
+}
+.badges-text {
+    width: 800px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.badges-row {
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.some-badge {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.08);
+    border-radius: 100px;
+}
+.some-badge img{
+    width: 128px;
+}
+.badges-attention {
+    font-size: 18px;
+    color: black;
+    box-shadow: 0px 0px 15px 5px rgba(254, 108, 108, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+.badge-wrapper {
+    height: auto;
+    width: 350px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    background: white;
+}
+.badge-container {
+    height: calc(100vh - 50px);
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.badge {
+    width: 90px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.badge-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.badge-header div {
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: white;
+    color: tomato;
+    border: 1px solid tomato;
+    border-radius: 0 10px 0 0;
+    cursor: pointer;
+    transition: .4s all ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding-top: 2px;
+}
+.badge-header div:hover {
+    background: tomato;
+    color: white;
+}
+.all-badges {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.badge-owner {
+    margin-left: 10px;
 }

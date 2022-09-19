@@ -12,6 +12,9 @@ const User = new Schema({
     avatar: {
         type: String,
         required: true
+    },
+    badges: {
+        type: Array
     }
 })
 

@@ -1,8 +1,14 @@
 <header class="about-partial">
     {{#if isMain}}
-        <a href="/extension/about">About Talk Time</a>
+        <a class="navs" href="/extension/about">About Talk Time</a>
+        <a href="/badges" class="navs">Badges</a>
     {{else}}
-        <a href="/feedbacks/{{url}}">Main</a>
-        <a href="/extension/about">About Talk Time</a>
+        {{#if isBadges}}
+            <a class="navs" href="/extension/about">About Talk Time</a>
+        {{else}}
+            <a class="navs" href="/extension/about">About Talk Time</a>
+            <a class="navs" href="/feedbacks/{{url}}">Main</a>
+            <a href="/badges" class="navs">Badges</a>
+        {{/if}}
     {{/if}}
 </header>

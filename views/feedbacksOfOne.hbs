@@ -1,5 +1,5 @@
-<h1>{{name}}(`s) feedbacks</h1>
 <div class="feedbacks">
+    <h1 class="title-of-one">{{name}}(`s) feedbacks</h1>
     {{#if feedbacks}}
     {{#each feedbacks}}
     <div class="feedback">
@@ -23,7 +23,7 @@
     </div>
     {{/each}}
     {{else}}
-        <span>No feedbacks yet</span>
+    <span>No feedbacks yet</span>
     {{/if}}
 </div>
-<script src="{{LINK}}/feedbackOfOne.js"></script>
+<script src="{{link}}/feedbackOfOne.js"></script>

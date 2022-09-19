@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="analyser">
+        <div class="inputs">
+            <div class="video-input">
+                <input required placeholder="Video link" class="src" type="text">
+                <button>Add video</button>
+            </div>
+            <div class="file-input">
+                <input class="file" type="file">
+            </div>
+        </div>
+        <div class="wrapper">
+            <video src="" controls></video>
+            <div class="chat">
+                <button class="down">↓</button>
+                <h1>Chat</h1>
+                <div class="start-message" style="width: 300px;"><span>When you will put the file with messages, they
+                        will be here</span>
+                </div>
+                <div style="display: none;" class="down">↓</div>
+            </div>
+        </div>
+        <div class="bookmark-buttons">
+            <button class="open-bookmark-popup">Create bookmark</button>
+            {{#if bookmarks}}
+            <button class="show-bookmarks">Show bookmarks</button>
+            {{/if}}
+        </div>
+        <div class="all-bookmarks">
+            <div class="bookmark-header">
+                <span class="close-bookmarks-popup">✖</span>
+            </div>
+            {{#if bookmarks}}
+                {{#each bookmarks}}
+                    <div class="bookmark">
+                        <h3>{{name}}</h3>
+                        <h4>{{time}}</h4>
+                        <span>{{bookmark}}</span>
+                    </div>
+                {{/each}}
+            {{else}}
+                <span>No bookmarks yet<br/>Add a new one!</span>
+            {{/if}}
+        </div>
+        <div class="bookmark-popup">
+            <div class="bookmark-header">
+                <span class="close-create-bookmark-popup">✖</span>
+            </div>
+            <h1>Create a bookmark</h1>
+            <form action="/analyser/{{url}}" method="POST">
+                <label for="name">Your name</label>
+                <input placeholder="Enter your name" type="text" name="name" required>
+                <label for="bookmark">Your bookmark</label>
+                <input placeholder="Enter your bookmark" type="text" name="bookmark" max="100" required>
+                <label for="time" class="time-label">Time</label>
+                <input placeholder="Enter a time in 00:00:00 format" type="text" name="time" required>
+                <button type="submit" class="create-bookmark">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{link}}/analyser.js"></script>

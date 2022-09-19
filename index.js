@@ -13,15 +13,18 @@ let app = express()
 const PORT = process.env.PORT || 3000
 const MONGODB_URL = process.env.MONGODB_URL
 
-
-
-
 const hbs = exhbs.create({
     defaultLayout: "mainLayout",
     extname: "hbs",
     handlebars: allowInsecurePrototypeAccess(Handlebars),
     layoutsDir: __dirname + "/views/layouts",
     partialsDir: __dirname + "/views/partials",
+    helpers: {
+        convert: (str) => str.slice(0, -4)
+        .split("_")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ")
+    }
 });
 
 app.engine("hbs", hbs.engine);
@@ -38,12 +41,16 @@ app.use(express.json())
 const messageRoute = require('./routes/messages')
 const pagesRoute = require('./routes/pages')
 const feedbackRoute = require('./routes/feedback')
+const vadRoute = require('./routes/vad')
+const analyseRoute = require('./routes/analyser')
 
 app.use(cors({ origin: '*' }))
 
 app.use(messageRoute)
 app.use(pagesRoute)
 app.use(feedbackRoute)
+app.use(vadRoute)
+app.use(analyseRoute)
 
 async function start() {
     try {

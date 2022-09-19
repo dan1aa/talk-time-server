@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const LINK = process.env.LINK
 // const path = require('path')
 // const fs = require('fs')
 // const { exec } = require('child_process')
@@ -36,10 +37,17 @@ const router = require('express').Router()
 // })
 
 router.get('/extension/about', (req, res) => {
-    const LINK = process.env.LINK
     res.render('about', {
         cssFileName: 'about',
-        link: LINK
+        link: LINK,
+    })
+})
+
+router.get('/badges', (req, res) => {
+    res.render('badges', {
+        cssFileName: 'feedback',
+        link: LINK,
+        isBadges: true
     })
 })
 

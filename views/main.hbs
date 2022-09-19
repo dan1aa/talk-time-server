@@ -1,14 +1,34 @@
-<h1>Leave feedback about meeting participants!</h1>
 <div class="list-container">
+    <h1 class="main-title">Leave feedback about meeting participants!</h1>
     {{#each users}}
-    <div>
+    <div class="user-item">
         <div class="user-info">
             <img class="user-avatar" src="{{avatar}}" alt="">
             <span class="username-span">{{name}}</span>
         </div>
-        <div>
+        <div class="user-buttons">
+            {{#if badges}}
+            <button class="see-badges">See badges</button>
+            <div class="badge-wrapper">
+                <div class="badge-header">
+                    <span class="badge-owner">{{name}}`s badge(s)</span>
+                    <div class="close-badge">
+                        <span>✕</span>
+                    </div>
+                </div>
+                <div class="all-badges">
+                    {{#each badges}}
+                    <div class="badge">
+                        <img style="width: 48px;" src="{{link}}/{{badge}}" alt="">
+                        <span style="font-size: 12px;">{{convert badge}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
             <button class="see-feedback">See feedbacks</button>
             <button class="leave-feedback">Leave feedback</button>
+            
         </div>
     </div>
     {{/each}}
