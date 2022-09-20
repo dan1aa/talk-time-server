@@ -67,14 +67,6 @@ window.onload = async function () {
         }
     }
 
-
-    fetch('https://google.com', {
-        headers: {
-            "Access-Control-Allow-Origin": '*'
-        }
-    })
-    .then(res => console.log(res))
-
     addVideo.onclick = function () {
         if (!videoLink.value.trim()) {
             videoLink.style.border = '1px solid tomato'

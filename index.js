@@ -52,6 +52,14 @@ app.use(feedbackRoute)
 app.use(vadRoute)
 app.use(analyseRoute)
 
+app.get("*", (req, res) => {
+    res.status(404).render('notfound', {
+        title: "Not found",
+        message: 'Not found',
+        cssFileName: 'feedback'
+    })
+})
+
 async function start() {
     try {
         await mongoose.connect(MONGODB_URL, {

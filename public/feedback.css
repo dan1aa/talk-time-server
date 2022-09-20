@@ -223,6 +223,14 @@ button > a {
     border-radius: 100px;
     margin-right: 15px;
 }
+.notfound {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .notfound-title {
     font-size: 72px;
 }
