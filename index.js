@@ -5,7 +5,6 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const exhbs = require("express-handlebars");
 const Handlebars = require("handlebars");
-const bodyParser = require('body-parser')
 const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-access");
 
 let app = express()
@@ -41,7 +40,6 @@ app.use(express.json())
 const messageRoute = require('./routes/messages')
 const pagesRoute = require('./routes/pages')
 const feedbackRoute = require('./routes/feedback')
-const vadRoute = require('./routes/vad')
 const analyseRoute = require('./routes/analyser')
 
 app.use(cors({ origin: '*' }))
@@ -49,7 +47,6 @@ app.use(cors({ origin: '*' }))
 app.use(messageRoute)
 app.use(pagesRoute)
 app.use(feedbackRoute)
-app.use(vadRoute)
 app.use(analyseRoute)
 
 app.get("*", (req, res) => {
