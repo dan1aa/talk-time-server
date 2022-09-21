@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-video {
+video:not(.instruction-video) {
     margin-right: 10px;
     height: 370px;
     width: 650px;
 }
-
+.instruction-video {
+    width: 650px;
+    height: 370px;
+    margin-bottom: 10px;
+}
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -154,11 +158,10 @@ body {
     outline: none;
     border: 1px solid black;
     margin-right: 10px;
-    border-radius: 5px;
     background-color: white;
 }
 
-.instruction-button {
+.instruction-button, .close-instruction {
     height: 35px;
     cursor: pointer;
     border: none;
@@ -193,9 +196,7 @@ body {
     width: 1010px;
     height: auto;
 }
-.bookmark-popup, .all-bookmarks {
-    width: 400px;
-    height: 400px;
+.bookmark-popup, .all-bookmarks, .instruction-popup {
     background: white;
     position: fixed;
     top: 50%;
@@ -205,6 +206,14 @@ body {
     flex-direction: column;
     align-items: center;
     display: none;
+}
+.bookmark-popup, .all-bookmarks {
+    width: 400px;
+    height: 400px;
+}
+.instruction-popup {
+    width: 650px;
+    height: auto;
 }
 .all-bookmarks {
     overflow-y: scroll;
@@ -314,4 +323,12 @@ input.time-shaking {
 }
 label.time-shaking {
     color: tomato;
+}
+.close-instruction {
+    margin-bottom: 10px;
+    transition: .4s all ease;
+}
+.close-instruction:hover {
+    background: tomato;
+    color: white;
 }

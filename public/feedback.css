@@ -127,6 +127,14 @@ a {
     padding: 5px;
     cursor: pointer;
 }
+.success-wrapper {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .submit {
     border: none;
     outline: none;

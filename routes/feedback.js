@@ -101,7 +101,10 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
 
         let { sender, rating, feedback, badge } = req.body;
         let sendUser = await User.findOne({ name: sender })
-        badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
+        if(badge !== 'Choose the Badge (not necessarily)') {
+            badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
+        }
+        
         if (!sendUser) {
             res.status(404).render('notfound', {
                 cssFileName: 'feedback',
@@ -119,7 +122,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
             const receiver = req.url.split('/')[req.url.split('/').length - 1].replaceAll("%20", " ");
 
 
-            if (badge) {
+            if (badge !== 'Choose the Badge (not necessarily)') {
                 await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
             }
 

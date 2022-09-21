@@ -16,3 +16,6 @@
     margin-bottom: 20px;
     text-align: center;
 }
+.instruction-popup {
+    display: none;
+}

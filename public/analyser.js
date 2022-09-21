@@ -16,6 +16,8 @@ window.onload = async function () {
     let showBookmarksButton = document.querySelector('.show-bookmarks');
     let bookmarksWrapper = document.querySelector('.all-bookmarks')
     let allBookmarks = document.querySelectorAll('.bookmark')
+    let closeInstruction = document.querySelector('.close-instruction')
+    let instructionPopup = document.querySelector('.instruction-popup')
 
     function validateTime(time) {
         var regex = new RegExp("([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])");
@@ -29,6 +31,16 @@ window.onload = async function () {
     instructionButton.innerHTML = 'Watch instruction'
     instructionButton.className = 'instruction-button';
     header.prepend(instructionButton);
+
+    instructionButton.onclick = function() {
+        instructionPopup.style.display = 'flex'
+        document.querySelector('.container:not(.instruction-popup)').style.filter = 'blur(4px)'
+    }
+
+    closeInstruction.onclick = function() {
+        instructionPopup.style.display = 'none'
+        document.querySelector('.container:not(.instruction-popup)').style.filter = 'blur(0px)'
+    }
 
     showBookmarksButton.onclick = function() {
         bookmarksWrapper.style.display = 'flex'
