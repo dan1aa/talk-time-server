@@ -1,3 +1,4 @@
+<input class="search" type="text" placeholder="🔎︎ Seach participants">
 <div class="list-container">
     <h1 class="main-title">Leave feedback about meeting participants!</h1>
     {{#each users}}
@@ -25,6 +26,10 @@
                     {{/each}}
                 </div>
             </div>
+            {{else}}
+            <div style="width: 150px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                <span>No badges yet</span>
+            </div>
             {{/if}}
             <button class="see-feedback">See feedbacks</button>
             <button class="leave-feedback">Leave feedback</button>
@@ -38,4 +43,5 @@
 <footer class="question-footer">
     <button class="question">!</button>
 </footer>
+
 <script src="{{link}}/main.js"></script>

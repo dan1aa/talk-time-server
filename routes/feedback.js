@@ -4,6 +4,8 @@ const User = require('../models/User')
 let multer = require('multer')
 const path = require('path')
 
+const LINK = process.env.LINK
+const DEFAULT_SELECT_BADGE = 'Choose the Badge (not necessarily)'
 
 let storage = multer.diskStorage({
     destination: './public/uploads/',
@@ -19,7 +21,6 @@ let upload = multer({
     }
 }).single('file');
 
-const LINK = process.env.LINK
 
 router.get('/feedbacks/:url', async (req, res) => {
     const url = req.url.split('/')[req.url.split('/').length - 1];
@@ -33,7 +34,7 @@ router.get('/feedbacks/:url', async (req, res) => {
             message: 'Meeting URL not found, maybe you enter a wrong URL',
             title: 'Not found',
             link: LINK,
-            isMain: true
+            url
         })
     }
     else {
@@ -42,7 +43,7 @@ router.get('/feedbacks/:url', async (req, res) => {
             users,
             title: 'Feedbacks',
             link: LINK,
-            isMain: true,
+            url
         })
     }
 })
@@ -74,22 +75,23 @@ router.post('/feedbacks/:url', async (req, res) => {
             message: 'Invalid Token, access denied',
             title: 'Not found',
             link: LINK,
-            isMain: true
         })
     }
 })
 
-router.get('/newfeedback/:url/:name', (req, res) => {
+router.get('/newfeedback/:url/:name', async (req, res) => {
     const splittedURL = req.url.split('/')
     const name = splittedURL[splittedURL.length - 1].replaceAll("%20", " ")
     const url = splittedURL[splittedURL.length - 2]
+    const users = await User.find({ url })
 
     res.render('form', {
         cssFileName: 'feedback',
         name,
         url,
         title: 'Leave feedback',
-        link: LINK
+        link: LINK,
+        users
     })
 })
 
@@ -101,7 +103,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
 
         let { sender, rating, feedback, badge } = req.body;
         let sendUser = await User.findOne({ name: sender })
-        if(badge !== 'Choose the Badge (not necessarily)') {
+        if(badge !== DEFAULT_SELECT_BADGE) {
             badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
         }
         
@@ -111,7 +113,6 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
                 message: 'Invalid username, please enter your correct google meet name',
                 title: 'Not found',
                 link: LINK,
-                isMain: true
             })
             return;
         }
@@ -122,7 +123,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
             const receiver = req.url.split('/')[req.url.split('/').length - 1].replaceAll("%20", " ");
 
 
-            if (badge !== 'Choose the Badge (not necessarily)') {
+            if (badge !== DEFAULT_SELECT_BADGE) {
                 await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
             }
 
@@ -133,7 +134,8 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
                 rating,
                 url,
                 senderImg,
-                feedbackImg: ''
+                feedbackImg: '',
+                date: new Date().toLocaleDateString()
             });
 
             if (req.file) {

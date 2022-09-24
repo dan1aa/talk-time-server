@@ -1,48 +1,57 @@
-<div class="form-wrapper">
-    <h1 class="feedback-title">Your feedback about {{name}}</h1>
-<span style="text-align: center; margin-bottom: 10px;">Please enter your name from google meet, because if you <br/>enter not correct name, feedback won`t be posted</span>
-<form action="/newfeedback/{{url}}/{{name}}" method="POST" enctype="multipart/form-data" class="feedback-form">
-    <input required type="text" name="sender" placeholder="Enter your name">
-    <textarea minlength="100" maxlength="400" required name="feedback" placeholder="Enter your feedback"></textarea>
-    <span class="characters-count"></span>
-    <label for="rating">Select rate from 0 to 5</label>
-    <input required name="rating" type="number" value="0" max="5" min="0">
-    <label for="file">If you have some photo or video that can be useful it this feedback you can put it here</label>
-    <input class="file" name="file" type="file">
-    <select name="badge" id="select" class="select">
-        <option hidden selected>Choose the Badge (not necessarily)</option>
-        <option value="Active Listener">Active Listener</option>
-        <option value="Areas of Agreement">Areas of Agreement</option>
-        <option value="Ask for feedback">Ask for feedback</option>
-        <option value="Bee Brief">Bee Brief</option>
-        <option value="Brainstormer">Brainstormer</option>
-        <option value="Check for Understanding">Check for Understanding</option>
-        <option value="Clarifing Question">Clarifing Question</option>
-        <option value="Decide">Decide</option>
-        <option value="Define the Problem">Define the Problem</option>
-        <option value="Disagreement Solver">Disagreement Solver</option>
-        <option value="Encourageing Knowlege">Encourageing Knowlege</option>
-        <option value="Give Feedback">Give Feedback</option>
-        <option value="Helper">Helper</option>
-        <option value="Ideas Evaluation">Ideas Evaluation</option>
-        <option value="Info Shareer">Info Shareer</option>
-        <option value="Mic Earned">Mic Earned</option>
-        <option value="Muting Maestro">Muting Maestro</option>
-        <option value="Norms Meeting">Norms Meeting</option>
-        <option value="Notes Master">Notes Master</option>
-        <option value="Online Tools">Online Tools</option>        
-        <option value="Problem Pauser">Problem Pauser</option>
-        <option value="Questions">Questions</option>
-        <option value="Ready Headset Go">Ready Headset Go</option>
-        <option value="Resource vs Impact">Resource vs Impact</option>
-        <option value="Screenshare">Screenshare</option>
-        <option value="Stay on Topic">Stay on Topic</option>
-        <option value="Teacher">Teacher</option>
-        <option value="Time Earning">Time Earning</option>
-        <option value="To Do Tracker">To Do Tracker</option>
-        <option value="Zen Enviroment">Zen Enviroment</option>
-    </select>
-    <button class="submit" type="submit">Send</button>
-</form>
+<div class="send-feedback-wrapper">
+    <div class="form-wrapper">
+        <h1 class="feedback-title">Your feedback about {{name}}</h1>
+        <form action="/newfeedback/{{url}}/{{name}}" method="POST" enctype="multipart/form-data" class="feedback-form">
+            <select name="sender" id="sender-input" class="sender-input" required>
+                <option hidden selected value="">Choose your name</option>
+                {{#each users}}
+                    <option value="{{name}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <span class="selected">Selected: </span>
+            <textarea minlength="100" maxlength="400" required name="feedback"
+                placeholder="Enter your feedback"></textarea>
+            <span class="characters-count"></span>
+            <label for="rating">Select rate from 0 to 5</label>
+            <input required name="rating" type="number" value="0" max="5" min="0">
+            <label for="file">If you have some photo or video that can be useful it this feedback you can put it
+                here</label>
+            <input class="file" name="file" type="file">
+            <select name="badge" id="select" class="select">
+                <option hidden selected>Choose the Badge (not necessarily)</option>
+                <option value="Active Listener">Active Listener</option>
+                <option value="Areas of Agreement">Areas of Agreement</option>
+                <option value="Ask for feedback">Ask for feedback</option>
+                <option value="Bee Brief">Bee Brief</option>
+                <option value="Brainstormer">Brainstormer</option>
+                <option value="Check for Understanding">Check for Understanding</option>
+                <option value="Clarifing Question">Clarifing Question</option>
+                <option value="Decide">Decide</option>
+                <option value="Define the Problem">Define the Problem</option>
+                <option value="Disagreement Solver">Disagreement Solver</option>
+                <option value="Encourageing Knowlege">Encourageing Knowlege</option>
+                <option value="Give Feedback">Give Feedback</option>
+                <option value="Helper">Helper</option>
+                <option value="Ideas Evaluation">Ideas Evaluation</option>
+                <option value="Info Shareer">Info Shareer</option>
+                <option value="Mic Earned">Mic Earned</option>
+                <option value="Muting Maestro">Muting Maestro</option>
+                <option value="Norms Meeting">Norms Meeting</option>
+                <option value="Notes Master">Notes Master</option>
+                <option value="Online Tools">Online Tools</option>
+                <option value="Problem Pauser">Problem Pauser</option>
+                <option value="Questions">Questions</option>
+                <option value="Ready Headset Go">Ready Headset Go</option>
+                <option value="Resource vs Impact">Resource vs Impact</option>
+                <option value="Screenshare">Screenshare</option>
+                <option value="Stay on Topic">Stay on Topic</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Time Earning">Time Earning</option>
+                <option value="To Do Tracker">To Do Tracker</option>
+                <option value="Zen Enviroment">Zen Enviroment</option>
+            </select>
+            <button class="submit" type="submit">Send</button>
+        </form>
+    </div>
 </div>
 <script src="{{link}}/createFeedback.js"></script>

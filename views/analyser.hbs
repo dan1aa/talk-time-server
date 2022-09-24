@@ -23,8 +23,13 @@
         <div class="bookmark-buttons">
             <button class="open-bookmark-popup">Create bookmark</button>
             {{#if bookmarks}}
-            <button class="show-bookmarks">Show bookmarks</button>
+                <button class="show-bookmarks">Show bookmarks</button>
+            {{else}}
+                <div class="no-bookmarks-yet">
+                    <span>No bookmarks yet</span>
+                </div>
             {{/if}}
+            <button class="reset">Reset video and chat</button>
         </div>
         <div class="all-bookmarks">
             <div class="bookmark-header">
@@ -59,4 +64,5 @@
         </div>
     </div>
 </div>
+
 <script src="{{link}}/analyser.js"></script>

@@ -10,7 +10,6 @@ router.get('/analyser/:id', async (req, res) => {
     res.render('analyser', {
         title: 'Analyser',
         cssFileName: 'analyser',
-        isMain: true,
         link: LINK,
         url,
         bookmarks
@@ -18,20 +17,21 @@ router.get('/analyser/:id', async (req, res) => {
 })
 
 router.post('/analyser/:url', async (req, res) => {
-    const splittedURL = req.url.split('/')
-    const url = splittedURL[splittedURL.length - 1]
-    let { name, bookmark, time } = req.body;
+        const splittedURL = req.url.split('/')
+        const url = splittedURL[splittedURL.length - 1]
 
-    let newBookmark = new Bookmark({
-        name,
-        bookmark,
-        time,
-        url
-    })
-
-    await newBookmark.save()
+        let { name, bookmark, time } = req.body;
     
-    res.redirect(`/analyser/${url}`)
+        let newBookmark = new Bookmark({
+            name,
+            bookmark,
+            time,
+            url
+        })
+    
+        await newBookmark.save()
+        
+        res.redirect(`/analyser/${url}`)
 })
 
 module.exports = router;

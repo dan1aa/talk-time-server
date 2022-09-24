@@ -1,9 +1,9 @@
 window.onload = function() {
-    const allClose = document.querySelectorAll('.close');
+    const allClose = document.querySelectorAll('.close-img');
     const allViewImage = document.querySelectorAll('.view-image');
 
-    allViewImage.forEach(view => {
-        view.onclick = function() {
+    allViewImage.forEach(image => {
+        image.onclick = function() {
             const modal = this.parentElement.querySelector('.feedback-img-wrapper')
             modal.style.display = 'flex'
         }

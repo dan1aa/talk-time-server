@@ -30,6 +30,10 @@ const Feedback = new Schema({
     },
     feedbackImg: {
         type: String
+    },
+    date: {
+        type: String,
+        required: true
     }
 })
 

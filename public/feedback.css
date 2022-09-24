@@ -41,7 +41,7 @@ a {
 
 .list-container {
     width: 800px;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 150px);
     overflow-y: scroll;
     padding: 0px 20px 15px 20px;
 }
@@ -87,7 +87,7 @@ a {
 
 /*FORM*/
 .form-wrapper {
-    height: calc(100vh - 50px);
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -123,9 +123,19 @@ a {
     font-size: 12px;
 }
 .feedback-form select {
-    margin-bottom: 20px;
     padding: 5px;
     cursor: pointer;
+}
+.feedback-form select:not(.sender-input) {
+    margin-bottom: 20px;
+}
+.sender-input {
+    width: 100%;
+    margin-bottom: 5px;
+}
+.selected {
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 .success-wrapper {
     width: 100%;
@@ -200,6 +210,9 @@ button > a {
 .feedback-text {
     width: 100%;
 }
+.feedback-title {
+    margin-bottom: 15px;
+}
 .feedbacks {
     width: 800px;
     height: calc(100vh - 50px);
@@ -265,12 +278,13 @@ button > a {
 .rating {
     font-weight: bold;
     color: rgb(7, 203, 252);
+}
+.date {
+    font-size: 14px;
     margin-bottom: 5px;
 }
 .question-footer {
     width: 100%;
-    position: fixed;
-    top: calc(100% - 40px);
     height: 40px;
     display: flex;
     align-items: center;
@@ -354,11 +368,17 @@ button > a {
     outline: none;
     border: 1px solid black;
     margin-right: 10px;
-    border-radius: 5px;
     background-color: white;
 }
 .feedback-img {
     width: 32px;
+}
+.send-feedback-wrapper {
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .view-image {
     height: 35px;
@@ -375,7 +395,7 @@ button > a {
     color: white;
 }
 .feedback-img-wrapper {
-    width: 300px;
+    width: auto;
     height: auto;
     position: fixed;
     top: 50%;
@@ -389,12 +409,14 @@ button > a {
     display: none;
     border-radius: 10px;
 }
-.close {
-    align-self: flex-end;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+.close-img {
+    width: 100%;
+    height: 30px;
+    background: tomato;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
 .feedback-img {
     width: 256px;
@@ -402,6 +424,7 @@ button > a {
 
 /*BADGES*/
 .badges-title {
+    font-size: 36px;
     margin-bottom: 5px;
 }
 .badges-text {
@@ -431,15 +454,19 @@ button > a {
 }
 .badges-attention {
     font-size: 18px;
-    color: black;
-    box-shadow: 0px 0px 15px 5px rgba(254, 108, 108, 0.05);
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
+    background: -webkit-linear-gradient(left, #D97777, #A1D0D6, #E38964);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.08);
+    padding: 10px;
 }
 .badge-wrapper {
     height: auto;
-    width: 350px;
+    width: 300px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -465,7 +492,7 @@ button > a {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 0 5px 10px 5px;
     text-align: center;
 }
 .badge-header {
@@ -499,10 +526,21 @@ button > a {
 }
 .all-badges {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    padding: 10px;
 }
 .badge-owner {
     margin-left: 10px;
+}
+.search {
+    width: 760px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 3px 10px 0 10px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.search::placeholder {
+    font-size: 14px;
 }

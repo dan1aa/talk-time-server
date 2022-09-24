@@ -1,27 +1,26 @@
 <div class="feedbacks">
     <h1 class="title-of-one">{{name}}(`s) feedbacks</h1>
     {{#if feedbacks}}
-    {{#each feedbacks}}
-    <div class="feedback">
-        <div class="sender">
-            <img class="user-avatar" src={{senderImg}} alt="test">
-            <h2>{{sender}}</h2>
-        </div>
-        <div class="text">
-            <span class="feedback-text">{{feedback}}</span>
-            <span class="rating">Rating: {{rating}}</span>
-            {{#if feedbackImg}}
-            <button class="view-image">View image</button>
-            <div class="feedback-img-wrapper">
-                <div class="close">
-                    <span class="close-img">✕</span>
+        {{#each feedbacks}}
+            <div class="feedback">
+                <div class="sender">
+                    <img class="user-avatar" src={{senderImg}} alt="test">
+                    <h2>{{sender}}</h2>
                 </div>
-                <img class="feedback-img" src="{{LINK}}{{feedbackImg}}" alt="">
+                <div class="text">
+                    <span class="feedback-text">{{feedback}}</span>
+                    <span class="rating">Rating: {{rating}}</span>
+                    <span class="date">{{date}}</span>
+                    {{#if feedbackImg}}
+                        <button class="view-image">View image</button>
+                        <div class="feedback-img-wrapper">
+                            <img class="feedback-img" src="{{link}}{{feedbackImg}}" alt="">
+                            <button class="close-img">Close</button>
+                        </div>
+                    {{/if}}
+                </div>
             </div>
-            {{/if}}
-        </div>
-    </div>
-    {{/each}}
+        {{/each}}
     {{else}}
     <span>No feedbacks yet</span>
     {{/if}}

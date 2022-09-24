@@ -36,12 +36,15 @@ window.onload = function() {
     const refreshButton = document.querySelector('.refresh');
     const questionButton = document.querySelector('.question');
     const modal = document.querySelector('.question-modal');
-    const container = document.querySelector('.container')
+    const container = document.querySelector('.container:not(.question-modal)')
     const closeModal = document.querySelector('.close-modal');
     const openBadgesModal = document.querySelectorAll('.see-badges');
     const closeBadges = document.querySelectorAll('.close-badge');
-    let URL = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
     const leaveFeedbackButtons = document.querySelectorAll('.leave-feedback')
+    const searchInput = document.querySelector('.search');
+    const allUsers = document.querySelectorAll('.user-item')
+    
+    const URL = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
 
     openBadgesModal.forEach(button => {
         button.onclick = function() {
@@ -78,6 +81,21 @@ window.onload = function() {
     closeModal.onclick = function() {
         modal.style.display = 'none'
         container.style.filter = 'blur(0)'
+    }
+
+    searchInput.oninput = function() {
+        let value = this.value;
+        if(value) {
+            allUsers.forEach(user => {
+                let name = user.querySelector('.username-span').textContent
+                if(!name.includes(value)) {
+                    user.style.display = 'none'
+                }
+                else {
+                    user.style.display = 'flex'
+                }
+            })
+        }
     }
 
     function dynamic(elem, path) {

@@ -1,14 +1,7 @@
-<header class="about-partial">
-    {{#if isMain}}
+<header class="header-partial">
+    <button class="go-back">➔</button>
+    <div class="navs-wrapper">
         <a class="navs" href="/extension/about">About Talk Time</a>
         <a href="/badges" class="navs">Badges</a>
-    {{else}}
-        {{#if isBadges}}
-            <a class="navs" href="/extension/about">About Talk Time</a>
-        {{else}}
-            <a class="navs" href="/extension/about">About Talk Time</a>
-            <a class="navs" href="/feedbacks/{{url}}">Main</a>
-            <a href="/badges" class="navs">Badges</a>
-        {{/if}}
-    {{/if}}
+    </div>
 </header>

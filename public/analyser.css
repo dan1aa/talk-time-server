@@ -183,18 +183,28 @@ body {
     color: white;
 }
 
-.open-bookmark-popup , .show-bookmarks {
-    width: 150px;
+.open-bookmark-popup , .show-bookmarks, .reset {
     height: 35px;
     border: none;
     outline: none;
-    background: rgb(8, 149, 210);
     color: white;
     cursor: pointer;
+}
+.open-bookmark-popup , .show-bookmarks {
+    background: rgb(8, 149, 210);
+    width: 150px;
+}
+.reset {
+    width: 180px;
+    background: tomato;
 }
 .bookmark-buttons {
     width: 1010px;
     height: auto;
+    display: flex;
+}
+.show-bookmarks, .reset, .no-bookmarks-yet {
+    margin-left: 10px;
 }
 .bookmark-popup, .all-bookmarks, .instruction-popup {
     background: white;
@@ -210,6 +220,13 @@ body {
 .bookmark-popup, .all-bookmarks {
     width: 400px;
     height: 400px;
+}
+.no-bookmarks-yet {
+    width: 150px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .instruction-popup {
     width: 650px;

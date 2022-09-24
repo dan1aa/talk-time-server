@@ -20,5 +20,10 @@
     <video class="instruction-video" controls src="{{link}}/instruction.mov"></video>
     <button class="close-instruction">Close</button>
 </div>
-
+<script>
+    let backButton = document.querySelector('.go-back');
+    backButton.onclick = function() {
+        history.back()
+    }
+</script>
 </html>
