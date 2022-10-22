@@ -1,49 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-body {
-    overflow-x: hidden;
-}
-a {
-    text-decoration: none;
-}
-
-
-::-webkit-scrollbar {
-    width: 3px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
 .container {
-    width: 100%;
-    height: 100vh;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .list-container {
-    width: 800px;
-    height: calc(100vh - 150px);
+    width: calc(100vw - 300px);
+    height: 100vh;
     overflow-y: scroll;
-    padding: 0px 20px 15px 20px;
+    padding: 30px 20px 15px 20px;
 }
 
 .user-item {
@@ -51,15 +14,17 @@ a {
     height: 100px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.04);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px 0 10px;
 }
+
 .user-item:not(:last-child) {
     margin-bottom: 20px;
 }
+
 .user-buttons {
     width: 65%;
     height: 100%;
@@ -67,7 +32,8 @@ a {
     align-items: center;
     justify-content: flex-end;
 }
-.user-buttons > button {
+
+.user-buttons>button {
     border: none;
     outline: none;
     border: 1px solid rgb(8, 123, 172);
@@ -80,7 +46,8 @@ a {
     transition: .3s all ease;
     margin-right: 10px;
 }
-.user-buttons > button:hover {
+
+.user-buttons>button:hover {
     background: rgb(8, 123, 172);
     color: white;
 }
@@ -93,24 +60,44 @@ a {
     flex-direction: column;
     align-items: center;
 }
+
 .feedback-form {
-    width: 400px;
+    width: 500px;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
+
 .feedback-form input {
     height: 40px;
     border: 1px solid black;
     outline: none;
     border-radius: 5px;
-    margin-bottom: 20px;
     padding: 4px;
 }
-.feedback-form input:not([type="file"]) {
+
+.feedback-form input:not(.anonymous) {
+    margin-bottom: 20px;
+
+}
+
+.feedback-form input:not([type="file"]):not(.anonymous) {
     padding: 10px;
 }
+
+.anomymous-feedback {
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.anomymous-feedback>span {
+    margin-left: 5px;
+}
+
 .feedback-form textarea {
     height: 150px;
     resize: none;
@@ -118,25 +105,30 @@ a {
     outline: none;
     border-radius: 5px;
 }
+
 .characters-count {
-    margin-bottom: 20px;
     font-size: 12px;
+    margin-bottom: 15px;
 }
+
 .feedback-form select {
     padding: 5px;
     cursor: pointer;
 }
+
 .feedback-form select:not(.sender-input) {
     margin-bottom: 20px;
 }
+
 .sender-input {
     width: 100%;
     margin-bottom: 5px;
 }
+
 .selected {
-    margin-bottom: 10px;
     font-size: 14px;
 }
+
 .success-wrapper {
     width: 100%;
     height: calc(100vh - 50px);
@@ -145,7 +137,8 @@ a {
     align-items: center;
     flex-direction: column;
 }
-.submit {
+
+.send-feedback {
     border: none;
     outline: none;
     border: 1px solid rgb(8, 123, 172);
@@ -156,35 +149,39 @@ a {
     color: rgb(43, 149, 194);
     transition: .6s all ease;
 }
-.submit:hover {
+
+.send-feedback:hover {
     background: rgb(43, 149, 194);
     color: white;
 }
+
 .feedback-form label {
     margin-bottom: 5px;
 }
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  opacity: 1;
+    opacity: 1;
 }
 
-input[type=number]::-webkit-outer-spin-button, 
+input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: inner-spin-button !important;
-  width: 25px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  cursor: pointer;
+    -webkit-appearance: inner-spin-button !important;
+    width: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    cursor: pointer;
 }
-button > a {
+
+button>a {
     width: 100%;
     height: 100%;
 }
+
 .feedback {
-    width: 750px;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -192,13 +189,15 @@ button > a {
     padding: 10px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.04);
     margin-bottom: 15px;
 }
+
 .title-of-one {
     text-align: center;
     margin-bottom: 20px;
 }
+
 .text {
     width: 70%;
     height: 100%;
@@ -207,20 +206,25 @@ button > a {
     justify-content: center;
     align-items: flex-start;
 }
+
 .feedback-text {
-    width: 100%;
+    width: 80%;
 }
+
 .feedback-title {
     margin-bottom: 15px;
 }
+
 .feedbacks {
-    width: 800px;
+    width: calc(100vw - 300px);
     height: calc(100vh - 50px);
     display: flex;
     flex-direction: column;
+    align-items: center;
     overflow-y: scroll;
-    padding: 0px 20px 15px 20px;
+    padding: 20px 20px 15px 20px;
 }
+
 .sender {
     width: 30%;
     height: 100%;
@@ -228,22 +232,28 @@ button > a {
     justify-content: flex-start;
     align-items: center;
 }
+
 .sender img {
     margin-right: 10px;
 }
+
 .sender h2 {
     font-size: 18px;
 }
+
 .user-info {
     height: 100%;
     display: flex;
     align-items: center;
 }
+
 .user-avatar {
     width: 32px;
+    height: 32px;
     border-radius: 100px;
     margin-right: 15px;
 }
+
 .notfound {
     width: 100%;
     height: calc(100vh - 50px);
@@ -252,82 +262,91 @@ button > a {
     align-items: center;
     justify-content: center;
 }
+
 .notfound-title {
     font-size: 72px;
 }
+
 .notfound-text {
     margin-bottom: 10px;
 }
-.refresh {
-    width: 150px;
+
+.refresh,
+.analyser-button,
+.audio-activity-button {
     height: 40px;
     border: none;
     outline: none;
     border-radius: 5px;
     background: white;
-    border: 1px solid tomato;
     cursor: pointer;
     margin-top: 10px;
-    color: tomato;
     transition: .3s all ease;
 }
+
+.refresh,
+.analyser-button {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.audio-activity-button {
+    width: 250px;
+}
+
+.refresh {
+    color: tomato;
+    border: 1px solid tomato;
+    margin-right: 10px;
+}
+
+.analyser-button,
+.audio-activity-button {
+    border: 1px solid rgb(8, 123, 172);
+    color: rgb(8, 123, 172);
+}
+
+.analyser-button:hover,
+.audio-activity-button:hover {
+    background: rgb(8, 123, 172);
+    color: white;
+}
+
 .refresh:hover {
     background: tomato;
     color: white;
 }
+
 .rating {
     font-weight: bold;
     color: rgb(7, 203, 252);
 }
+
 .date {
     font-size: 14px;
     margin-bottom: 5px;
 }
-.question-footer {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 30px;
-}
-.question {
-    height: 30px;
-    width: 30px;
+
+.open-feedback-button {
+    width: 130px;
+    height: 35px;
+    border: none;
     outline: none;
-    border: 1px solid tomato;
-    border-radius: 100px;
     cursor: pointer;
-    background: white;
-    color: tomato;
-    transition: .5s all ease;
-    font-weight: bold;
-    font-size: 18px;
-}
-.question:hover {
-    background: tomato;
+    background: rgb(20, 149, 205);
     color: white;
+    border-radius: 5px;
 }
-.question-modal {
-    width: 400px;
-    height: 250px;
-    background: white;
-    border-radius: 10px;
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.11);
-    flex-direction: column;
-}
+
 .header {
     width: 100%;
     height: 40px;
     display: flex;
     justify-content: flex-end;
 }
-.header button, .close {
+
+.header button,
+.close {
     width: 40px;
     height: 100%;
     border: none;
@@ -339,28 +358,19 @@ button > a {
     cursor: pointer;
     transition: .4s all ease;
 }
-.header button:hover, .close:hover {
+
+.header button:hover,
+.close:hover {
     background: tomato;
     color: white;
 }
-.question-text {
-    width: 100%;
-    height: calc(100% - 40px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-}
-.question-text h1 {
-    margin-bottom: 5px;
-}
+
 .file {
     border: none;
     padding: 0;
     cursor: pointer;
 }
+
 .file::file-selector-button {
     width: 100px;
     height: 30px;
@@ -370,9 +380,12 @@ button > a {
     margin-right: 10px;
     background-color: white;
 }
+
 .feedback-img {
-    width: 32px;
+    margin: 10px;
+    width: 256px;
 }
+
 .send-feedback-wrapper {
     width: 100%;
     height: calc(100vh - 50px);
@@ -380,6 +393,7 @@ button > a {
     justify-content: center;
     align-items: center;
 }
+
 .view-image {
     height: 35px;
     width: 120px;
@@ -389,11 +403,14 @@ button > a {
     color: rgb(7, 203, 252);
     cursor: pointer;
     transition: .4s all ease;
+    margin-bottom: 10px;
 }
+
 .view-image:hover {
     background: rgb(7, 203, 252);
     color: white;
 }
+
 .feedback-img-wrapper {
     width: auto;
     height: auto;
@@ -405,10 +422,11 @@ button > a {
     flex-direction: column;
     align-items: center;
     background: white;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.04);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.04);
     display: none;
     border-radius: 10px;
 }
+
 .close-img {
     width: 100%;
     height: 30px;
@@ -418,20 +436,18 @@ button > a {
     border: none;
     cursor: pointer;
 }
-.feedback-img {
-    width: 256px;
-}
-
 /*BADGES*/
 .badges-title {
     font-size: 36px;
     margin-bottom: 5px;
 }
+
 .badges-text {
     width: 800px;
     text-align: center;
     margin-bottom: 20px;
 }
+
 .badges-row {
     width: 500px;
     height: auto;
@@ -440,18 +456,21 @@ button > a {
     align-items: center;
     margin-bottom: 20px;
 }
+
 .some-badge {
     width: auto;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.08);
     border-radius: 100px;
 }
-.some-badge img{
+
+.some-badge img {
     width: 128px;
 }
+
 .badges-attention {
     font-size: 18px;
     background: -webkit-linear-gradient(left, #D97777, #A1D0D6, #E38964);
@@ -461,9 +480,10 @@ button > a {
     display: flex;
     align-items: center;
     font-weight: bold;
-    box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.08);
     padding: 10px;
 }
+
 .badge-wrapper {
     height: auto;
     width: 300px;
@@ -473,74 +493,103 @@ button > a {
     transform: translate(-50%, -50%);
     display: none;
     flex-direction: column;
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.08);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     background: white;
 }
+
 .badge-container {
     height: calc(100vh - 50px);
-    width: 100%;
+    width: calc(100vw - 300px);
     flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.badge {
-    width: 90px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 5px 10px 5px;
-    text-align: center;
-}
-.badge-header {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.badge-header div {
-    width: 30px;
-    height: 30px;
-    border: none;
-    outline: none;
-    background: white;
-    color: tomato;
-    border: 1px solid tomato;
-    border-radius: 0 10px 0 0;
-    cursor: pointer;
-    transition: .4s all ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    padding-top: 2px;
-}
-.badge-header div:hover {
-    background: tomato;
-    color: white;
-}
-.all-badges {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-.badge-owner {
-    margin-left: 10px;
-}
+
 .search {
-    width: 760px;
-    height: 40px;
+    width: 100%;
+    height: 45px;
     margin-bottom: 20px;
     padding: 3px 10px 0 10px;
     outline: none;
     border: 1px solid black;
     border-radius: 5px;
 }
+
 .search::placeholder {
     font-size: 14px;
+}
+
+/* ALL BADGES */
+.badge {
+    width: 240px;
+    height: auto;
+    background: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.badge-information {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3px;
+}
+
+.badge img {
+    width: 48px;
+    border-radius: 100px;
+    margin-right: 5px;
+}
+.badge span {
+    font-size: 12px;
+}
+.badge-display-container {
+    height: 100vh;
+    width: calc(100vw - 300px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.badge-display-container > h1 {
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    width: calc(100vw - 300px);
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    overflow-y: scroll;
+    justify-content: center;
+}
+.level-wrapper {
+    width: 100%;
+    height: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.badge-level {
+    width: 60%;
+    height: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: lightgray;
+    margin-left: 5px;
+}
+
+.badge-level div {
+    width: 20%;
+    height: 100%;
+    background: #58D68D;
+    border-radius: 5px;
 }

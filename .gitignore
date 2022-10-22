@@ -5,3 +5,6 @@ node_modules
 .env
 /.env
 ./.env
+./video_chats
+/video_chats
+video_chats

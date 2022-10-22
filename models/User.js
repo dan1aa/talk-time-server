@@ -15,6 +15,12 @@ const User = new Schema({
     },
     badges: {
         type: Array
+    },
+    peaks: {
+        type: Array
+    },
+    percents: {
+        type: String
     }
 })
 

@@ -1,35 +1,48 @@
 <div class="container">
     <div class="analyser">
-        <div class="inputs">
-            <div class="video-input">
-                <input required placeholder="Video link" class="src" type="text">
-                <button>Add video</button>
-            </div>
-            <div class="file-input">
-                <input class="file" type="file">
-            </div>
-        </div>
+        <h1 class="analyser-title">{{title}}</h1>
         <div class="wrapper">
-            <video src="" controls></video>
+            <video src="{{link}}/{{videoLink}}"></video>
             <div class="chat">
                 <button class="down">↓</button>
                 <h1>Chat</h1>
-                <div class="start-message" style="width: 300px;"><span>When you will put the file with messages, they
-                        will be here</span>
-                </div>
+                <button class="load-chat">Load chat</button>
+                <span class="chat-warning">The chat will display dynamically depending on the video</span>
                 <div style="display: none;" class="down">↓</div>
             </div>
+        </div>
+        <div class="waveform-wrapper">
+            <div id="waveform"></div>
+        </div>
+        <div class="position-wrapper">
+            <div class="positions">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="loader-wrapper">
+            <span class="loader"></span>
+            <h3 class="loading-text"></h3>
+        </div>
+        <div class="video-buttons">
+            <button class="play" disabled>Play</button>
+            <button class="pause" disabled>Pause</button>
         </div>
         <div class="bookmark-buttons">
             <button class="open-bookmark-popup">Create bookmark</button>
             {{#if bookmarks}}
-                <button class="show-bookmarks">Show bookmarks</button>
+            <button class="show-bookmarks">Show bookmarks</button>
             {{else}}
-                <div class="no-bookmarks-yet">
-                    <span>No bookmarks yet</span>
-                </div>
+            <div class="no-bookmarks-yet">
+                <span>No bookmarks yet</span>
+            </div>
             {{/if}}
-            <button class="reset">Reset video and chat</button>
+        </div>
+        <div class="span-wrapper">
+            <span>* Double click on the graph or on the chat message to change video current time</span>
         </div>
         <div class="all-bookmarks">
             <div class="bookmark-header">
@@ -44,7 +57,7 @@
                     </div>
                 {{/each}}
             {{else}}
-                <span>No bookmarks yet<br/>Add a new one!</span>
+            <span>No bookmarks yet<br />Add a new one!</span>
             {{/if}}
         </div>
         <div class="bookmark-popup">
@@ -52,7 +65,7 @@
                 <span class="close-create-bookmark-popup">✖</span>
             </div>
             <h1>Create a bookmark</h1>
-            <form action="/analyser/{{url}}" method="POST">
+            <form action="/analyser/newbookmark/{{url}}" method="POST">
                 <label for="name">Your name</label>
                 <input placeholder="Enter your name" type="text" name="name" required>
                 <label for="bookmark">Your bookmark</label>
@@ -64,5 +77,6 @@
         </div>
     </div>
 </div>
-
+<span style="display: none;" class="chat-link">{{chatLink}}</span>
+<span style="display: none;" class="audio-link">{{audioLink}}</span>
 <script src="{{link}}/analyser.js"></script>

@@ -4,8 +4,9 @@
         {{#each feedbacks}}
             <div class="feedback">
                 <div class="sender">
-                    <img class="user-avatar" src={{senderImg}} alt="test">
+                    <img class="user-avatar" src={{senderImg}} alt="">
                     <h2>{{sender}}</h2>
+                    <span class="feedback-object-id" style="display: none;">{{_id}}</span>
                 </div>
                 <div class="text">
                     <span class="feedback-text">{{feedback}}</span>
@@ -18,6 +19,7 @@
                             <button class="close-img">Close</button>
                         </div>
                     {{/if}}
+                    <a href="/feedback/{{url}}/{{_id}}"><button class="open-feedback-button">Leave Comment</button></a>
                 </div>
             </div>
         {{/each}}

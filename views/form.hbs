@@ -7,13 +7,18 @@
                 {{#each users}}
                     <option value="{{name}}">{{name}}</option>
                 {{/each}}
+                    <option hidden value="Anonymous">Anomymous</option>
             </select>
             <span class="selected">Selected: </span>
+            <div class="anomymous-feedback">
+                <input type="checkbox" class="anonymous">
+                <span>Anomymous feedback</span>
+            </div>
             <textarea minlength="100" maxlength="400" required name="feedback"
                 placeholder="Enter your feedback"></textarea>
             <span class="characters-count"></span>
             <label for="rating">Select rate from 0 to 5</label>
-            <input required name="rating" type="number" value="0" max="5" min="0">
+            <input class="rating-input" required name="rating" type="number" value="0" max="5" min="0">
             <label for="file">If you have some photo or video that can be useful it this feedback you can put it
                 here</label>
             <input class="file" name="file" type="file">
@@ -50,7 +55,7 @@
                 <option value="To Do Tracker">To Do Tracker</option>
                 <option value="Zen Enviroment">Zen Enviroment</option>
             </select>
-            <button class="submit" type="submit">Send</button>
+            <button class="send-feedback" type="submit">Send</button>
         </form>
     </div>
 </div>

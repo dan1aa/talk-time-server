@@ -19,10 +19,22 @@ const hbs = exhbs.create({
     layoutsDir: __dirname + "/views/layouts",
     partialsDir: __dirname + "/views/partials",
     helpers: {
-        convert: (str) => str.slice(0, -4)
+        convert(str) {return str.slice(0, -4)
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ")
+        .join(" ")},
+        mult(num1, num2) {
+            return num1 * num2
+        },
+        average(rate) { 
+            if(!rate.length) return 0;
+            let sum = rate.reduce((a, b) => a + b, 0);
+            return (sum / rate.length).toFixed(1);
+        },
+        checkFour(num) {
+            if(num <= 4) return num * 25;
+            else return 100
+        }
     }
 });
 
@@ -31,6 +43,7 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "video_chats")));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,6 +54,8 @@ const messageRoute = require('./routes/messages')
 const pagesRoute = require('./routes/pages')
 const feedbackRoute = require('./routes/feedback')
 const analyseRoute = require('./routes/analyser')
+const vadRoute = require('./routes/vad')
+const dashboardRoute = require('./routes/dashboard')
 
 app.use(cors({ origin: '*' }))
 
@@ -48,6 +63,8 @@ app.use(messageRoute)
 app.use(pagesRoute)
 app.use(feedbackRoute)
 app.use(analyseRoute)
+app.use(vadRoute)
+app.use(dashboardRoute)
 
 app.get("*", (req, res) => {
     res.status(404).render('notfound', {

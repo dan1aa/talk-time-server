@@ -1,0 +1,48 @@
+<div class="dashboard-container">
+    <div class="summary">
+        <h1>Meeting Summary</h1>
+        <div class="meeting-conclusions">
+            <input class="conclusion-input" type="text" placeholder="Enter meeting summaries"
+                name="meeting-conclusions">
+            <button class="add-conclusion">Add</button>
+        </div>
+        <div class="conclusions">
+            {{#if conclusions}}
+            {{#each conclusions}}
+            <div class="conclusion">
+                <li>{{text}}</li>
+            </div>
+            {{/each}}
+            {{else}}
+            <span class="no-conclusion">No conclusions...Try to add one!</span>
+            {{/if}}
+        </div>
+    </div>
+    <div class="column">
+        <div class="meeting-users">
+            <h1>Meeting participants</h1>
+            <div class="meeting-participants">
+                {{#each usersObject}}
+                <div class="participant">
+                    <div>
+                        <img src="{{avatar}}" alt="">
+                        <span class="username-graph">{{name}}</span>
+                    </div>
+                    <span style="color:">★ {{average rating}}</span>
+                    <span class="user-percents">{{percents}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="chart">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="overall">
+            <div><span>Number of feedbacks:&nbsp; </span><span> {{feedbacksLength}}</span></div>
+            <div><span>Number of users:&nbsp; </span><span> {{usersLength}}</span></div>
+            <div><span>Number of conclusions:&nbsp; </span><span> {{conclusionsLength}}</span></div>
+            <div><span>Meet link:&nbsp; </span><span> {{url}}</span></div>
+        </div>
+    </div>
+</div>
+<script src="{{link}}/dashboard.js"></script>

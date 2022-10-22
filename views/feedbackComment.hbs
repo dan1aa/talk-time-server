@@ -1,0 +1,54 @@
+<div class="feedbacks-page">
+    <div class="feedbacks-section">
+        <div class="feedback">
+            <span class="feedback-object-id" style="display: none;">{{feedback._id}}</span>
+            <div class="sender">
+                <img class="user-avatar" src={{feedback.senderImg}} alt="">
+                <h2>{{feedback.sender}}</h2>
+            </div>
+            <div class="text">
+                <span class="feedback-text">{{feedback.feedback}}</span>
+                <span class="rating">Rating: {{feedback.rating}}</span>
+                <span class="date">{{feedback.date}}</span>
+                {{#if feedback.feedbackImg}}
+                <button class="view-image">View image</button>
+                <div class="feedback-img-wrapper">
+                    <img class="feedback-img" src="{{link}}{{feedback.feedbackImg}}" alt="">
+                    <button class="close-img">Close</button>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <button class="leave-comment">Leave Comment</button>
+        <form class="leave-comment-wrapper" action="/newcomment/{{feedback.url}}/{{feedback._id}}" method="POST">
+            <select name="commentName" id="comment" class="comment-name" required>
+                <option hidden selected value="">Choose your name</option>
+                {{#each users}}
+                <option value="{{name}}">{{name}}</option>
+                {{/each}}
+            </select>
+            <textarea required placeholder="Enter your comment" name="comment" class="comment"></textarea>
+            <div class="comment-buttons">
+                <button class="cancel-comment">Cancel</button>
+                <button type="submit" class="send-comment">Send</button>
+            </div>
+        </form>
+        <div class="comments">
+            {{#if feedback.comments}}
+            {{#each feedback.comments}}
+            <div class="each-comment">
+                <div class="comment-user">
+                    <h3>{{commentName}}</h3>
+                </div>
+                <h4 style="margin-bottom: 15px;">{{comment}}</h4>
+                <span class="comment-date">{{date}}</span>
+            </div>
+            {{/each}}
+            {{else}}
+            <span>No comments yet...Try to add one!</span>
+            {{/if}}
+        </div>
+    </div>
+    {{!-- LIKESSS --}}
+</div>
+<script src="{{link}}/feedbackComment.js"></script>

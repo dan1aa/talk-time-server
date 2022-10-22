@@ -1,0 +1,21 @@
+<div class="badge-display-container">
+    <h1>{{name}}`s badges</h1>
+    <div class="wrapper">
+        {{#each badges}}
+        <div class="badge">
+            <img src="{{link}}/{{badge}}" alt="">
+            <div class="badge-information">
+                <span style="margin-bottom: 3px;">{{convert badge}}</span>
+                <div class="level-wrapper">
+                    <span>{{checkFour count}}%</span>
+                    <div class="badge-level">
+                        <div style="width: {{checkFour count}}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{/each}}
+    </div>
+</div>
+<script src="{{link}}/badgesDisplay.js"></script>

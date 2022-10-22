@@ -1,5 +1,5 @@
-<input class="search" type="text" placeholder="🔎︎ Seach participants">
 <div class="list-container">
+    <input class="search" type="text" placeholder="🔎︎ Seach participants">
     <h1 class="main-title">Leave feedback about meeting participants!</h1>
     {{#each users}}
     <div class="user-item">
@@ -9,27 +9,11 @@
         </div>
         <div class="user-buttons">
             {{#if badges}}
-            <button class="see-badges">See badges</button>
-            <div class="badge-wrapper">
-                <div class="badge-header">
-                    <span class="badge-owner">{{name}}`s badge(s)</span>
-                    <div class="close-badge">
-                        <span>✕</span>
-                    </div>
-                </div>
-                <div class="all-badges">
-                    {{#each badges}}
-                    <div class="badge">
-                        <img style="width: 48px;" src="{{link}}/{{badge}}" alt="">
-                        <span style="font-size: 12px;">{{convert badge}}</span>
-                    </div>
-                    {{/each}}
-                </div>
-            </div>
+                <button class="see-badges">See badges</button>
             {{else}}
-            <div style="width: 150px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
-                <span>No badges yet</span>
-            </div>
+                <div style="width: 150px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
+                    <span>No badges yet</span>
+                </div>
             {{/if}}
             <button class="see-feedback">See feedbacks</button>
             <button class="leave-feedback">Leave feedback</button>
@@ -37,11 +21,9 @@
         </div>
     </div>
     {{/each}}
-    <span>If not all users who are in the meeting are displayed here, click this button</span><br />
-    <button class="refresh">Refresh</button>
+    <div style="display: flex;">
+        <button class="refresh">Refresh</button>
+    </div>
 </div>
-<footer class="question-footer">
-    <button class="question">!</button>
-</footer>
 
 <script src="{{link}}/main.js"></script>

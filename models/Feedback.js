@@ -34,6 +34,9 @@ const Feedback = new Schema({
     date: {
         type: String,
         required: true
+    },
+    comments: {
+        type: Array
     }
 })
 

@@ -1,16 +1,34 @@
-.header-partial {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    padding: 0px 20px 0 13px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
-.navs:not(:last-child) {
-    margin-right: 20px;
-    color: black;
-    text-decoration: none;
+.container {
+    display: flex;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+body {
+    overflow-x: hidden;
 }
 .main-title {
     margin-bottom: 20px;
@@ -30,4 +48,56 @@
     cursor: pointer;
     color: white;
     background: tomato;
+}
+a {
+    text-decoration: none;
+}
+
+.menu {
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #34495E;
+    padding: 15px;
+    transition: .2s all ease-in;
+    color: white;
+}
+.menu-item {
+    height: 50px;
+    width: 100%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+.menu-logo {
+    display: flex;
+    height: auto;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.menu-logo img {
+    margin-left: -5px;
+    filter: brightness(0) invert(1);
+}
+.menu div a {
+    width: fit-content;
+    color: #85929E;
+    padding-bottom: 2px;
+}
+.hide-show-menu {
+    height: auto;
+    width: 35px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.hide-show-menu > div {
+    margin-bottom: 6px;
+    height: 4px;
+    width: 100%;
+    background: white;
+    border-radius: 100px;
 }

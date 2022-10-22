@@ -23,7 +23,7 @@ let upload = multer({
 
 
 router.get('/feedbacks/:url', async (req, res) => {
-    const url = req.url.split('/')[req.url.split('/').length - 1];
+    const { url } = req.params;
     const users = await User.find({
         url
     })
@@ -50,7 +50,7 @@ router.get('/feedbacks/:url', async (req, res) => {
 
 router.post('/feedbacks/:url', async (req, res) => {
     if (req.headers['token'] === process.env.HEADER) {
-        const url = req.url.split('/')[req.url.split('/').length - 1];
+        const { url } = req.params;
         const { users } = req.body;
         if (users.length) {
             for (let i = 0; i < users.length; i++) {
@@ -80,9 +80,8 @@ router.post('/feedbacks/:url', async (req, res) => {
 })
 
 router.get('/newfeedback/:url/:name', async (req, res) => {
-    const splittedURL = req.url.split('/')
-    const name = splittedURL[splittedURL.length - 1].replaceAll("%20", " ")
-    const url = splittedURL[splittedURL.length - 2]
+    const name = req.params.name.replaceAll("%20", " ")
+    const { url } = req.params;
     const users = await User.find({ url })
 
     res.render('form', {
@@ -100,67 +99,64 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         if (err) {
             throw new Error(err)
         }
+        let senderImg;
 
         let { sender, rating, feedback, badge } = req.body;
+
         let sendUser = await User.findOne({ name: sender })
-        if(badge !== DEFAULT_SELECT_BADGE) {
+
+        if (badge !== DEFAULT_SELECT_BADGE) {
             badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
         }
-        
+
         if (!sendUser) {
-            res.status(404).render('notfound', {
-                cssFileName: 'feedback',
-                message: 'Invalid username, please enter your correct google meet name',
-                title: 'Not found',
-                link: LINK,
-            })
-            return;
+            senderImg = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
         }
-
         else {
-            let senderImg = sendUser.avatar
-            const url = req.url.split('/')[req.url.split('/').length - 2];
-            const receiver = req.url.split('/')[req.url.split('/').length - 1].replaceAll("%20", " ");
-
-
-            if (badge !== DEFAULT_SELECT_BADGE) {
-                await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
-            }
-
-            let newFeedback = new Feedback({
-                sender,
-                receiver,
-                feedback,
-                rating,
-                url,
-                senderImg,
-                feedbackImg: '',
-                date: new Date().toLocaleDateString()
-            });
-
-            if (req.file) {
-                newFeedback.feedbackImg = '/uploads/' + req.file.filename || '';
-            }
-
-            await newFeedback.save()
-                .then(() => {
-                    res.render('success', {
-                        cssFileName: 'feedback',
-                        url,
-                        title: 'Success',
-                        link: LINK
-                    })
-                })
+            senderImg = sendUser.avatar
         }
 
+        const { url } = req.params;
+        const receiver = req.params.name.replaceAll("%20", " ");
+
+
+        if (badge !== DEFAULT_SELECT_BADGE) {
+            await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
+        }
+
+        let newFeedback = new Feedback({
+            sender,
+            receiver,
+            feedback,
+            rating,
+            url,
+            senderImg,
+            feedbackImg: '',
+            date: new Date().toLocaleDateString()
+        });
+
+        if (req.file) {
+            newFeedback.feedbackImg = '/uploads/' + req.file.filename || '';
+        }
+
+        await newFeedback.save()
+            .then(() => {
+                res.render('success', {
+                    cssFileName: 'feedback',
+                    url,
+                    title: 'Success',
+                    message: 'Success',
+                    link: LINK
+                })
+            })
 
     })
 
 })
 
 router.get('/feedbacks/:url/:name', async (req, res) => {
-    const name = req.url.split('/')[req.url.split('/').length - 1].replaceAll("%20", " ");
-    const url = req.url.split('/')[req.url.split('/').length - 2];
+    const name = req.params.name.replaceAll("%20", " ");
+    const { url } = req.params;
     const feedbacks = await Feedback.find({
         receiver: name,
         url
@@ -169,9 +165,82 @@ router.get('/feedbacks/:url/:name', async (req, res) => {
         cssFileName: 'feedback',
         name,
         feedbacks,
+        link: LINK,
+        url
+    })
+})
+
+router.get('/feedback/:url/:id', async (req, res) => {
+    const { id, url } = req.params;
+    let feedback = await Feedback.findOne({ _id: id, url })
+    const users = await User.find({ url })
+    res.render('feedbackComment', {
+        title: "Comment",
+        cssFileName: 'feedbackComment',
+        feedback,
+        link: LINK,
+        users,
+        url
+    })
+})
+
+router.post('/newcomment/:url/:id', async (req, res) => {
+    const { id, url } = req.params;
+    const { commentName, comment } = req.body;
+    await Feedback.findOneAndUpdate({ _id: id, url }, { $push: { comments: { commentName, comment, date: new Date().toLocaleDateString() } } })
+    res.render('success', {
+        cssFileName: 'feedback',
+        title: 'Success',
         url,
+        message: 'Success',
         link: LINK
     })
+})
+
+
+router.get('/allbadges/:url/:name', async (req, res) => {
+    const { name, url } = req.params;
+    let users = await User.find({ name })
+    let badges = []
+
+    users.forEach(user => {
+        if (user.badges.length) {
+            badges.push(user.badges)
+        }
+    })
+
+    let flattedBadges = badges.flat()
+
+    let result = {};
+    flattedBadges.forEach(function (v) {
+        result[v.badge] = (result[v.badge] || 0) + 1;
+    });
+
+    flattedBadges = flattedBadges.filter(
+        (value, index, self) =>
+            index === self.findIndex((t) => t.badge === value.badge)
+    );
+
+    flattedBadges.map((item, idx) => {
+        item.count = Object.values(result)[idx]
+    })
+
+
+
+    res.render('badgesDisplay', {
+        title: `${name}'s badges`,
+        cssFileName: 'feedback',
+        badges: flattedBadges,
+        link: LINK,
+        url,
+        name
+    })
+})
+
+router.post('/givebadge/:name', async (req, res) => {
+    const { name } = req.params;
+    const { badge } = req.body;
+    await User.findOneAndUpdate({ name }, { $push: { badges: { badge } } })
 })
 
 module.exports = router;
