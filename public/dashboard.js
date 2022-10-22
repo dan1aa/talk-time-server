@@ -47,7 +47,7 @@ window.onload = function () {
 
     users.forEach(user => {
         user.onclick = function() {
-            let link = `http://localhost:3000/feedbacks/${url}/${this.querySelector('div > .username-graph').textContent}`;
+            let link = `https://talk-time-server.herokuapp.com/feedbacks/${url}/${this.querySelector('div > .username-graph').textContent}`;
             window.location.href = link
         }
     })
@@ -61,7 +61,7 @@ window.onload = function () {
         li.innerHTML = addConclusionInput.value;
         conclusion.appendChild(li)
         conclusionsWrapper.appendChild(conclusion)
-        fetch(`http://localhost:3000/newconclusion/${url}`, {
+        fetch(`https://talk-time-server.herokuapp.com/newconclusion/${url}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

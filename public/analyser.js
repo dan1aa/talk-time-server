@@ -27,7 +27,7 @@ window.onload = async function () {
         backend: 'MediaElement'
     });
 
-    wavesurfer.load(`http://localhost:3000/${audioLink.textContent}`);
+    wavesurfer.load(`https://talk-time-server.herokuapp.com/${audioLink.textContent}`);
 
     wavesurfer.setMute(true)
 
@@ -107,7 +107,7 @@ loadChatButton.onclick = async function () {
     this.style.display = 'none'
     chatWarningMessage.style.display = 'none'
     chat.style.display = 'block'
-    let response = await fetch(`http://localhost:3000/${chatLink.textContent}`)
+    let response = await fetch(`https://talk-time-server.herokuapp.com/${chatLink.textContent}`)
     let data = await response.blob()
 
     let file = new File([data], "test.txt", {})
