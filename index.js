@@ -19,7 +19,7 @@ const hbs = exhbs.create({
     layoutsDir: __dirname + "/views/layouts",
     partialsDir: __dirname + "/views/partials",
     helpers: {
-        convert(str) {return str.slice(0, -4)
+        convert(str) {return str.slice(0, -5)
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
         .join(" ")},

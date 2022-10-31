@@ -3,6 +3,7 @@ const Feedback = require('../models/Feedback')
 const User = require('../models/User')
 let multer = require('multer')
 const path = require('path')
+const config = require('../badge_config/config')
 
 const LINK = process.env.LINK
 const DEFAULT_SELECT_BADGE = 'Choose the Badge (not necessarily)'
@@ -106,7 +107,9 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         let sendUser = await User.findOne({ name: sender })
 
         if (badge !== DEFAULT_SELECT_BADGE) {
-            badge = `${badge.toLowerCase().split(' ').join('_')}.png`;
+            key = `${badge.toLowerCase().split(' ').join('_')}`;
+            value = config[key]
+            badge = `${key}${value}.png`
         }
 
         if (!sendUser) {
@@ -224,8 +227,6 @@ router.get('/allbadges/:url/:name', async (req, res) => {
     flattedBadges.map((item, idx) => {
         item.count = Object.values(result)[idx]
     })
-
-
 
     res.render('badgesDisplay', {
         title: `${name}'s badges`,

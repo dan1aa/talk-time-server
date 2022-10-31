@@ -58,7 +58,7 @@ window.onload = async function () {
                 document.querySelector('.button-meeting-ends').onclick = function () {
                     this.disabled = true;
                     let averageArray = groupAverage(av)
-                    fetch(`https://talk-time-server.herokuapp.com/vad/${url}/${name}`, {
+                    fetch(`http://localhost:3000/vad/${url}/${name}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

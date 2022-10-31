@@ -10,7 +10,7 @@ window.onload = function () {
     badgesButtons.forEach(badgeButton => {
         badgeButton.onclick = function() {
             let name = this.parentElement.parentElement.querySelector('.user-info > .username-span').textContent;
-            window.location.href = `https://talk-time-server.herokuapp.com/allbadges/${URL}/${name}`
+            window.location.href = `http://localhost:3000/allbadges/${URL}/${name}`
         }
     })
 

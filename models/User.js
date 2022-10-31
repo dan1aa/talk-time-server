@@ -14,7 +14,8 @@ const User = new Schema({
         required: true
     },
     badges: {
-        type: Array
+        type: Array,
+        default: []
     },
     peaks: {
         type: Array
