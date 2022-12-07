@@ -36,7 +36,7 @@ window.onload = function() {
                         count += 1
                     }
                 })
-                window.location = `http://localhost:3000/quizend/${quizName}/${url}?count=${count}&username=${select.value}` 
+                window.location = `https://talk-time-server.onrender.com/quizend/${quizName}/${url}?count=${count}&username=${select.value}` 
             } 
             else alert('Please, fill all fields!')
         }

@@ -13,7 +13,7 @@ window.onload = function () {
 
     allMenuItems.forEach(item => {
         item.onclick = function() {
-            window.location = `http://localhost:3000/searchlist/${this.textContent}`
+            window.location = `https://talk-time-server.onrender.com/searchlist/${this.textContent}`
         }
     })
 
