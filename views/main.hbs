@@ -1,29 +1,30 @@
-<div class="list-container">
-    <input class="search" type="text" placeholder="🔎︎ Seach participants">
-    <h1 class="main-title">Leave feedback about meeting participants!</h1>
-    {{#each users}}
-    <div class="user-item">
-        <div class="user-info">
-            <img class="user-avatar" src="{{avatar}}" alt="">
-            <span class="username-span">{{name}}</span>
-        </div>
-        <div class="user-buttons">
-            {{#if badges}}
-                <button class="see-badges">See badges</button>
-            {{else}}
-                <div style="width: 150px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
-                    <span>No badges yet</span>
-                </div>
-            {{/if}}
-            <button class="see-feedback">See feedbacks</button>
-            <button class="leave-feedback">Leave feedback</button>
-            
-        </div>
-    </div>
-    {{/each}}
-    <div style="display: flex;">
-        <button class="refresh">Refresh</button>
-    </div>
+<div class="main-container">
+   <div class="select-wrapper">
+      <div class="text">
+         <h1>Discover, analyse and leave feedbacks!</h1>
+         <h2>Make your meetings more convinient!</h2>
+      </div>
+      <div class="top-select">
+         <div class="input-wrapper">
+            <input type="text" placeholder="🔎︎ Seach meetings">
+            <div class="close-meetings-select">▲</div>
+         </div>
+         <div class="select">
+            <span>Choose the meeting name</span>
+            <span>▼</span>
+         </div>
+         <div class="select-question">?</div>
+      </div>
+      <div class="items-wrapper">
+         {{#each generals}}
+            <div class="item">{{name}}</div>
+         {{/each}}
+      </div>
+      <div>
+         <img class="img-question" src="{{link}}/select-question (1).png" alt="">
+         <span class="close-image-span">Click on image to close</span>
+      </div>
+   </div>
+   <img class="banner-img" src="{{link}}/New_10img.png" alt="">
 </div>
-
 <script src="{{link}}/main.js"></script>

@@ -35,3 +35,11 @@
 .card img {
     margin-bottom: 10px;
 }
+body.dark .about-container {
+    background: #212121;
+    color: white;
+}
+body.dark .card {
+    background: #3d3d3d;
+    border-radius: 10px;
+}

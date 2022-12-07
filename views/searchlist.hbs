@@ -1,0 +1,10 @@
+<div class="every-meeting-container">
+    {{#each meetings}}
+    <div class="every-meeting">
+        <span class="meet-url-span">{{this}}</span>
+        <a href="http://localhost:3000/dashboard/{{this}}">
+            <div>Go to dashboard page</div>
+        </a>
+    </div>
+    {{/each}}
+</div>

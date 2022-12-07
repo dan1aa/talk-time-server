@@ -35,20 +35,19 @@
         </form>
         <div class="comments">
             {{#if feedback.comments}}
-            {{#each feedback.comments}}
-            <div class="each-comment">
-                <div class="comment-user">
-                    <h3>{{commentName}}</h3>
+                {{#each feedback.comments}}
+                <div class="each-comment">
+                    <div class="comment-user">
+                        <h3>{{commentName}}</h3>
+                    </div>
+                    <h4 style="margin-bottom: 15px;">{{comment}}</h4>
+                    <span class="comment-date">{{date}}</span>
                 </div>
-                <h4 style="margin-bottom: 15px;">{{comment}}</h4>
-                <span class="comment-date">{{date}}</span>
-            </div>
-            {{/each}}
+                {{/each}}
             {{else}}
             <span>No comments yet...Try to add one!</span>
             {{/if}}
         </div>
     </div>
-    {{!-- LIKESSS --}}
 </div>
 <script src="{{link}}/feedbackComment.js"></script>

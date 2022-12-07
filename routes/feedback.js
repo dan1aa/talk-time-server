@@ -7,6 +7,7 @@ const config = require('../badge_config/config')
 
 const LINK = process.env.LINK
 const DEFAULT_SELECT_BADGE = 'Choose the Badge (not necessarily)'
+const DEFAULT_TECH_BADGE = 'Select Technology'
 
 let storage = multer.diskStorage({
     destination: './public/uploads/',
@@ -39,7 +40,7 @@ router.get('/feedbacks/:url', async (req, res) => {
         })
     }
     else {
-        res.render('main', {
+        res.render('feedbacks', {
             cssFileName: 'feedback',
             users,
             title: 'Feedbacks',
@@ -81,17 +82,21 @@ router.post('/feedbacks/:url', async (req, res) => {
 })
 
 router.get('/newfeedback/:url/:name', async (req, res) => {
-    const name = req.params.name.replaceAll("%20", " ")
-    const { url } = req.params;
+    const { url , name } = req.params;
     const users = await User.find({ url })
-
+    const currentUser = await User.findOne({name, url})
+    let apprenticeCount = 0;
+    currentUser?.techs.forEach(tech => {
+        tech.badge.endsWith('2') ? apprenticeCount += 1 : undefined
+    })
     res.render('form', {
         cssFileName: 'feedback',
         name,
         url,
         title: 'Leave feedback',
         link: LINK,
-        users
+        users,
+        masteryUnlocked: apprenticeCount >= 2
     })
 })
 
@@ -102,7 +107,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         }
         let senderImg;
 
-        let { sender, rating, feedback, badge } = req.body;
+        let { sender, rating, feedback, badge, tech, level } = req.body;
 
         let sendUser = await User.findOne({ name: sender })
 
@@ -112,19 +117,21 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
             badge = `${key}${value}.png`
         }
 
-        if (!sendUser) {
-            senderImg = 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
-        }
-        else {
-            senderImg = sendUser.avatar
-        }
+        senderImg = sendUser ? sendUser.avatar : 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
 
-        const { url } = req.params;
-        const receiver = req.params.name.replaceAll("%20", " ");
+        const { url, name } = req.params;
+        const receiver = req.params.name;
 
 
         if (badge !== DEFAULT_SELECT_BADGE) {
+            console.log(badge)
             await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
+        }
+        if(level || tech) {
+            if(tech !== DEFAULT_TECH_BADGE && tech !== undefined) {
+                let techBadge = `${tech}${level}`
+                await User.updateMany({name: receiver}, { $push: { techs: {badge: techBadge} } })
+            }
         }
 
         let newFeedback = new Feedback({
@@ -211,6 +218,7 @@ router.get('/allbadges/:url/:name', async (req, res) => {
             badges.push(user.badges)
         }
     })
+    console.log(badges)
 
     let flattedBadges = badges.flat()
 
@@ -228,6 +236,7 @@ router.get('/allbadges/:url/:name', async (req, res) => {
         item.count = Object.values(result)[idx]
     })
 
+
     res.render('badgesDisplay', {
         title: `${name}'s badges`,
         cssFileName: 'feedback',
@@ -242,6 +251,7 @@ router.post('/givebadge/:name', async (req, res) => {
     const { name } = req.params;
     const { badge } = req.body;
     await User.findOneAndUpdate({ name }, { $push: { badges: { badge } } })
+    console.log('hey')
 })
 
 module.exports = router;

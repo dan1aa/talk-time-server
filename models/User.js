@@ -18,10 +18,20 @@ const User = new Schema({
         default: []
     },
     peaks: {
-        type: Array
+        type: Array,
+        default: []
     },
     percents: {
-        type: String
+        type: String,
+        default: ''
+    },
+    age: {
+        type: String,
+        default: ''
+    },
+    techs: {
+        type: Array,
+        default: []
     }
 })
 

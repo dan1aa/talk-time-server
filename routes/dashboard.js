@@ -22,9 +22,11 @@ router.get('/dashboard/:url', async (req, res) => {
     })
     const conclusions = await Conclusion.find({ url })
     const ratings = await Feedback.find({ url })
-    ratings.forEach(rating => {
-        usersObject[rating.receiver].rating.push(rating.rating)
-    })
+    if(ratings) {
+        ratings.forEach(rating => {
+            usersObject[rating.receiver]?.rating.push(rating.rating)
+        })
+    }
 
     if (users.length === 0) {
         res.status(404).render('notfound', {

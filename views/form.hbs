@@ -5,9 +5,9 @@
             <select name="sender" id="sender-input" class="sender-input" required>
                 <option hidden selected value="">Choose your name</option>
                 {{#each users}}
-                    <option value="{{name}}">{{name}}</option>
+                <option value="{{name}}">{{name}}</option>
                 {{/each}}
-                    <option hidden value="Anonymous">Anomymous</option>
+                <option hidden value="Anonymous">Anomymous</option>
             </select>
             <span class="selected">Selected: </span>
             <div class="anomymous-feedback">
@@ -55,6 +55,22 @@
                 <option value="To Do Tracker">To Do Tracker</option>
                 <option value="Zen Enviroment">Zen Enviroment</option>
             </select>
+            <div class="techs-select-wrapper">
+                <select name="level" class="tech-level" name="level">
+                    <option hidden selected>Select level</option>
+                    <option value="1">1 level</option>
+                    <option value="2">2 level</option>
+                    <option value="3">3 level</option>
+                    <option value="4">4 level</option>
+                </select>
+                <select name="tech" class="apprentice-select">
+                    <option hidden selected>Select Technology</option>
+                    <option value="js_">JavaScript</option>
+                    <option value="py2_">Python</option>
+                    <option value="c++3_">C++</option>
+                    <option value="pm4_">Project Management</option>
+                </select>
+            </div>
             <button class="send-feedback" type="submit">Send</button>
         </form>
     </div>

@@ -4,16 +4,19 @@ window.onload = function() {
     const leaveComment = document.querySelector('.leave-comment');
     const cancelComment = document.querySelector('.cancel-comment');
     const commentWrapper = document.querySelector('.leave-comment-wrapper');
+    const allComments = document.querySelector('.comments')
 
     cancelComment.onclick = function(e) {
         e.preventDefault()
         commentWrapper.style.display = 'none'
         leaveComment.style.display = 'block'
+        allComments.style.display = 'flex'
     }
 
     leaveComment.onclick = function() {
         this.style.display = 'none';
         commentWrapper.style.display = 'flex'
+        allComments.style.display = 'none'
     }
 
     allViewImage.forEach(image => {

@@ -2,6 +2,26 @@ const URL = window.location.href.split('/').filter(item => item).at(-2);
 const menuItems = document.querySelectorAll('.menu div a');
 const menu = document.querySelector('.menu')
 const hideShow = document.querySelector('.hide-show-menu')
+const slider = document.querySelector('.slider')
+const themeCheckbox = document.querySelector('.theme-checkbox')
+
+if(localStorage.getItem('theme') === 'true') {
+    document.body.classList.toggle('dark')
+    if(themeCheckbox) {
+        themeCheckbox.checked = true
+    }
+}
+
+if(slider) {
+    slider.setAttribute('data-active', localStorage.getItem('theme'))
+    slider.onclick = function() {
+        this.dataset.active === 'false' ?
+        (this.dataset.active = 'true', localStorage.setItem('theme', true), document.body.classList.toggle('dark')) : 
+        (this.dataset.active = 'false', localStorage.setItem('theme', false), document.body.classList.remove('dark'))
+        console.log(this.dataset.active)
+    }
+}
+
 
 if (menu) {
     hideShow.onclick = function () {
@@ -24,7 +44,7 @@ if (menu) {
     function menuHelper(display, menuWidth, timeout, containerWidth) {
         const children = menu.querySelectorAll('*:not(.hide-show-menu > *):not(.hide-show-menu):not(.menu-wrapper)');
         console.log(children)
-        const containers = document.querySelectorAll('.about-container, .dashboard-container, .list-container, .feedbacks, .badge-container, .badge-display-container')
+        const containers = document.querySelectorAll('.about-container, .dashboard-container, .list-container, .feedbacks, .badge-container, .badge-display-container, .personal-container, .users-list-container, .every-user-container, .quiz-wrapper, .quiz-end-container, .quizes-container, .users-container')
         containers.forEach(container => {
             if(container) {
                 container.style.width = `calc(100vw - ${containerWidth}px)`

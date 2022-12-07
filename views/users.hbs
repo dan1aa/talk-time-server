@@ -1,0 +1,23 @@
+<div class="users-container">
+    <input type="text" class="search" placeholder="🔎︎ Seach participants">
+    {{#each filteredUsers}}
+    <div class="users">
+        <div class="user">
+            <div class="info">
+                <img src="{{avatar}}" alt="">
+                <span class="username">{{name}}</span>
+            </div>
+            <div class="techs">
+                {{#if techs}}
+                    {{#each techs}}
+                        <span>{{splitByUnderscore badge}}</span>
+                    {{/each}}
+                {{else}}
+                    <span class="no-techs">No technologies badges yet</span>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<script src="{{link}}/users.js"></script>

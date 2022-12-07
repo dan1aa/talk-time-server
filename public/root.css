@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 .container {
     display: flex;
 }
@@ -27,16 +29,20 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
 body {
     overflow-x: hidden;
 }
+
 .main-title {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .instruction-popup {
     display: none;
 }
+
 .go-back {
     width: 30px;
     height: 30px;
@@ -49,6 +55,7 @@ body {
     color: white;
     background: tomato;
 }
+
 a {
     text-decoration: none;
 }
@@ -64,6 +71,7 @@ a {
     transition: .2s all ease-in;
     color: white;
 }
+
 .menu-item {
     height: 50px;
     width: 100%;
@@ -71,21 +79,25 @@ a {
     display: flex;
     flex-direction: column;
 }
+
 .menu-logo {
     display: flex;
     height: auto;
     align-items: center;
     margin-bottom: 30px;
 }
+
 .menu-logo img {
     margin-left: -5px;
     filter: brightness(0) invert(1);
 }
+
 .menu div a {
     width: fit-content;
     color: #85929E;
     padding-bottom: 2px;
 }
+
 .hide-show-menu {
     height: auto;
     width: 35px;
@@ -94,10 +106,77 @@ a {
     flex-direction: column;
     cursor: pointer;
 }
-.hide-show-menu > div {
+
+.hide-show-menu>div {
     margin-bottom: 6px;
     height: 4px;
     width: 100%;
     background: white;
     border-radius: 100px;
+}
+.switch-wrapper {
+    width: 200px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    align-self: flex-start;
+    margin-right: 5px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 100px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 17px;
+    width: 17px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 100px;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(23px);
+    -ms-transform: translateX(23px);
+    transform: translateX(23px);
+}
+body.dark .menu {
+    background: #181818;
 }

@@ -1,12 +1,8 @@
-.container {
-    display: flex;
-}
-
 .list-container {
     width: calc(100vw - 300px);
     height: 100vh;
     overflow-y: scroll;
-    padding: 30px 20px 15px 20px;
+    padding: 20px 20px 15px 20px;
 }
 
 .user-item {
@@ -79,13 +75,22 @@
 
 .feedback-form input:not(.anonymous) {
     margin-bottom: 20px;
-
 }
 
 .feedback-form input:not([type="file"]):not(.anonymous) {
     padding: 10px;
 }
-
+.techs-select-wrapper {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.techs-select-wrapper select{
+    width: 48%;
+    height: 100%;
+}
 .anomymous-feedback {
     height: 30px;
     display: flex;
@@ -131,11 +136,14 @@
 
 .success-wrapper {
     width: 100%;
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.success-wrapper a {
+    color: black;
 }
 
 .send-feedback {
@@ -217,7 +225,7 @@ button>a {
 
 .feedbacks {
     width: calc(100vw - 300px);
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -298,6 +306,7 @@ button>a {
     color: tomato;
     border: 1px solid tomato;
     margin-right: 10px;
+    background: transparent;
 }
 
 .analyser-button,
@@ -388,7 +397,7 @@ button>a {
 
 .send-feedback-wrapper {
     width: 100%;
-    height: calc(100vh - 50px);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -499,7 +508,7 @@ button>a {
 }
 
 .badge-container {
-    height: calc(100vh - 50px);
+    height: 100vh;
     width: calc(100vw - 300px);
     flex-direction: column;
     display: flex;
@@ -592,4 +601,42 @@ button>a {
     height: 100%;
     background: #58D68D;
     border-radius: 5px;
+}
+body.dark .user-item {
+    background: #3d3d3d;
+    color: white;
+}
+body.dark .user-buttons button {
+    border: 1px solid tomato;
+    color: tomato;
+}
+body.dark .user-buttons button:hover {
+    background: tomato;
+    color: white;
+}
+body.dark h1 {
+    color: white;
+}
+body.dark .list-container, body.dark .badge-container, body.dark .feedbacks, body.dark .success-wrapper, body.dark .badge-display-container, body.dark .badge, body.dark .send-feedback-wrapper {
+    background: #212121;
+    color: white;
+}
+body.dark .success-wrapper a {
+    color: white;
+}
+body.dark .feedback {
+    background: #3d3d3d;
+}
+body.dark .search {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+body.dark .search::placeholder {
+    color: white;
+}
+body.dark input, body.dark select, body.dark textarea {
+    border: 1px solid white;
+    background: #212121;
+    color: white;
 }

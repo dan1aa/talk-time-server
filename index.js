@@ -34,6 +34,12 @@ const hbs = exhbs.create({
         checkFour(num) {
             if(num <= 4) return num * 25;
             else return 100
+        },
+        moreEquals(a, b) {
+            return a > b
+        },
+        splitByUnderscore(string) {
+            return string.split('_')[0]
         }
     }
 });

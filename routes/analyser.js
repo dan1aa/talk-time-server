@@ -90,7 +90,7 @@ router.get('/analyser/:title/:url', async (req, res) => {
                     const EDITED = `${VIDEO_ID}-editedByAnalyseApp`
                     const CHAT_ID = readyObject.chatLink.split('/')[5]
 
-                    if(fs.existsSync(`video_chats/${VIDEO_ID}-editedByAnalyseApp.mp4`) && fs.existsSync(`video_chats/${CHAT_ID}.txt`) && fs.existsSync(`video_chats/${VIDEO_ID}-editedAudio.mp3`)) {
+                    if (fs.existsSync(`video_chats/${VIDEO_ID}-editedByAnalyseApp.mp4`) && fs.existsSync(`video_chats/${CHAT_ID}.txt`) && fs.existsSync(`video_chats/${VIDEO_ID}-editedAudio.mp3`)) {
                         res.render('analyser', {
                             title: readyObject.title,
                             cssFileName: 'analyser',
@@ -104,77 +104,77 @@ router.get('/analyser/:title/:url', async (req, res) => {
                         return;
                     }
 
-                    // const dest = fs.createWriteStream(`video_chats/${VIDEO_ID}.mp4`)
-                    // try {
-                    //     drive.files.get({
-                    //         fileId: CHAT_ID,
-                    //         alt: 'media'
-                    //     })
-                    //         .then(res => {
-                    //             fs.writeFileSync(`video_chats/${CHAT_ID}.txt`, res.data)
-                    //         })
+                    const dest = fs.createWriteStream(`video_chats/${VIDEO_ID}.mp4`)
+                    try {
+                        drive.files.get({
+                            fileId: CHAT_ID,
+                            alt: 'media'
+                        })
+                            .then(res => {
+                                fs.writeFileSync(`video_chats/${CHAT_ID}.txt`, res.data)
+                            })
 
-                    //     drive.files.get({
-                    //         fileId: VIDEO_ID,
-                    //         alt: 'media'
-                    //     }, {
-                    //         responseType: 'stream'
-                    //     },
-                    //         (err, response) => {
-                    //             response.data.on('end', () => {
-                    //                 console.log('Stream started')
-                    //                 videoStream = spawn('ffmpeg', ['-i', `video_chats/${VIDEO_ID}.mp4`, '-vf', 'scale=640x320', '-b:v', '50K', `video_chats/${EDITED}.mp4`])
+                        drive.files.get({
+                            fileId: VIDEO_ID,
+                            alt: 'media'
+                        }, {
+                            responseType: 'stream'
+                        },
+                            (err, response) => {
+                                response.data.on('end', () => {
+                                    console.log('Stream started')
+                                    videoStream = spawn('ffmpeg', ['-i', `video_chats/${VIDEO_ID}.mp4`, '-vf', 'scale=640x320', '-b:v', '50K', `video_chats/${EDITED}.mp4`])
 
-                    //                 videoStream.on("close", () => {
-                    //                     fs.unlink(`video_chats/${VIDEO_ID}.mp4`, (err) => {
-                    //                         if (err) throw new Error(err)
-                    //                         getAudioStream = spawn('ffmpeg', ['-i', `video_chats/${EDITED}.mp4`, '-q:a', '0', '-map', 'a', `video_chats/${VIDEO_ID}-audio.mp3`])
+                                    videoStream.on("close", () => {
+                                        fs.unlink(`video_chats/${VIDEO_ID}.mp4`, (err) => {
+                                            if (err) throw new Error(err)
+                                            getAudioStream = spawn('ffmpeg', ['-i', `video_chats/${EDITED}.mp4`, '-q:a', '0', '-map', 'a', `video_chats/${VIDEO_ID}-audio.mp3`])
 
-                    //                         getAudioStream.on('close', code => {
-                    //                             resizeAudioStream = spawn('ffmpeg', ['-i', `video_chats/${VIDEO_ID}-audio.mp3`, '-b:v', '2M', '-b:a', '64K', `video_chats/${VIDEO_ID}-editedAudio.mp3`])
+                                            getAudioStream.on('close', code => {
+                                                resizeAudioStream = spawn('ffmpeg', ['-i', `video_chats/${VIDEO_ID}-audio.mp3`, '-b:v', '2M', '-b:a', '64K', `video_chats/${VIDEO_ID}-editedAudio.mp3`])
 
-                    //                             resizeAudioStream.on('close', () => {
-                    //                                 fs.unlink(`video_chats/${VIDEO_ID}-audio.mp3`, (err) => {
-                    //                                     if(err) throw new Error(err) 
-                    //                                     res.render('analyser', {
-                    //                                         title: readyObject.title,
-                    //                                         videoLink: `${EDITED}.mp4`,
-                    //                                         chatLink:`${CHAT_ID}.txt`,
-                    //                                         audioLink: `${VIDEO_ID}-editedAudio.mp3`,
-                    //                                         cssFileName: 'analyser',
-                    //                                         link: LINK,
-                    //                                         url,
-                    //                                         bookmarks,                                           
-                    //                                     })
+                                                resizeAudioStream.on('close', () => {
+                                                    fs.unlink(`video_chats/${VIDEO_ID}-audio.mp3`, (err) => {
+                                                        if (err) throw new Error(err)
+                                                        res.render('analyser', {
+                                                            title: readyObject.title,
+                                                            videoLink: `${EDITED}.mp4`,
+                                                            chatLink: `${CHAT_ID}.txt`,
+                                                            audioLink: `${VIDEO_ID}-editedAudio.mp3`,
+                                                            cssFileName: 'analyser',
+                                                            link: LINK,
+                                                            url,
+                                                            bookmarks,
+                                                        })
 
-                    //                                 })
-                    //                             })
-                    //                         })
+                                                    })
+                                                })
+                                            })
 
-                    //                         getAudioStream.on('error', (err) => {
-                    //                             console.log(err)
-                    //                         })
+                                            getAudioStream.on('error', (err) => {
+                                                console.log(err)
+                                            })
 
-                    //                         getAudioStream.stderr.on('data', data => {})
-                    //                     })
-                    //                     console.log('Ended')
-                    //                 });
+                                            getAudioStream.stderr.on('data', data => { })
+                                        })
+                                        console.log('Ended')
+                                    });
 
-                    //                 videoStream.on('error', err => {
-                    //                     throw new Error(err)
-                    //                 })
+                                    videoStream.on('error', err => {
+                                        throw new Error(err)
+                                    })
 
-                    //                 videoStream.stderr.on('data', data => {
-                    //                 })
-                    //             })
-                    //                 .on('error', err => {
-                    //                     console.log(err)
-                    //                 })
-                    //                 .pipe(dest)
-                    //         })
-                    // } catch (e) {
-                    //     throw new Error(e)
-                    // }
+                                    videoStream.stderr.on('data', data => {
+                                    })
+                                })
+                                    .on('error', err => {
+                                        console.log(err)
+                                    })
+                                    .pipe(dest)
+                            })
+                    } catch (e) {
+                        throw new Error(e)
+                    }
                 }
                 else {
                     res.render('notfound', {

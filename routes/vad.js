@@ -44,7 +44,8 @@ router.get('/activity/:url', async (req, res) => {
     res.render('activity', {
         users: currentUsers,
         title: 'Detailed Analyser',
-        url
+        url,
+        cssFileName: 'activity'
     })
 })
 
