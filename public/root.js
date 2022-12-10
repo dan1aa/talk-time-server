@@ -18,7 +18,6 @@ if(slider) {
         this.dataset.active === 'false' ?
         (this.dataset.active = 'true', localStorage.setItem('theme', true), document.body.classList.toggle('dark')) : 
         (this.dataset.active = 'false', localStorage.setItem('theme', false), document.body.classList.remove('dark'))
-        console.log(this.dataset.active)
     }
 }
 
@@ -43,7 +42,6 @@ if (menu) {
 
     function menuHelper(display, menuWidth, timeout, containerWidth) {
         const children = menu.querySelectorAll('*:not(.hide-show-menu > *):not(.hide-show-menu):not(.menu-wrapper)');
-        console.log(children)
         const containers = document.querySelectorAll('.about-container, .dashboard-container, .list-container, .feedbacks, .badge-container, .badge-display-container, .personal-container, .users-list-container, .every-user-container, .quiz-wrapper, .quiz-end-container, .quizes-container, .users-container')
         containers.forEach(container => {
             if(container) {

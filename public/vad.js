@@ -54,11 +54,10 @@ window.onload = async function () {
                     res = Math.round(sum / (arr.length / 2));
                 })
                 av.push(res)
-                console.log(av)
                 document.querySelector('.button-meeting-ends').onclick = function () {
                     this.disabled = true;
                     let averageArray = groupAverage(av)
-                    fetch(`https://talk-time-server.onrender.com/vad/${url}/${name}`, {
+                    fetch(`http://localhost:3000/vad/${url}/${name}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

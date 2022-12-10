@@ -122,7 +122,6 @@ router.get('/analyser/:title/:url', async (req, res) => {
                         },
                             (err, response) => {
                                 response.data.on('end', () => {
-                                    console.log('Stream started')
                                     videoStream = spawn('ffmpeg', ['-i', `video_chats/${VIDEO_ID}.mp4`, '-vf', 'scale=640x320', '-b:v', '50K', `video_chats/${EDITED}.mp4`])
 
                                     videoStream.on("close", () => {

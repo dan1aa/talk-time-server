@@ -71,6 +71,7 @@ body {
     flex-direction: column;
     margin-bottom: 20px;
     align-items: flex-start;
+    padding-right: 10px;
 }
 .user-percents {
     display: none;

@@ -116,7 +116,6 @@ router.get('/quizend/:name/:url', async (req, res) => {
 router.get('/users/:url', async (req, res) => {
     const { url } = req.params;
     const users = await User.find({})
-    console.log(users.length)
     const filteredUsers = users.filter((value, index, self) =>
         index === self.findIndex((t) => (
             t.name === value.name

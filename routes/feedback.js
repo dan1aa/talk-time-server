@@ -26,14 +26,12 @@ let upload = multer({
 
 router.get('/feedbacks/:url', async (req, res) => {
     const { url } = req.params;
-    const users = await User.find({
-        url
-    })
+    const users = await User.find({ url })
 
     if (users.length === 0) {
         res.status(404).render('notfound', {
             cssFileName: 'feedback',
-            message: 'Meeting URL not found, maybe you enter a wrong URL',
+            message: 'Meeting URL not found, maybe you entered a wrong URL',
             title: 'Not found',
             link: LINK,
             url
@@ -84,19 +82,13 @@ router.post('/feedbacks/:url', async (req, res) => {
 router.get('/newfeedback/:url/:name', async (req, res) => {
     const { url , name } = req.params;
     const users = await User.find({ url })
-    const currentUser = await User.findOne({name, url})
-    let apprenticeCount = 0;
-    currentUser?.techs.forEach(tech => {
-        tech.badge.endsWith('2') ? apprenticeCount += 1 : undefined
-    })
     res.render('form', {
         cssFileName: 'feedback',
         name,
         url,
         title: 'Leave feedback',
         link: LINK,
-        users,
-        masteryUnlocked: apprenticeCount >= 2
+        users
     })
 })
 
@@ -108,6 +100,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         let senderImg;
 
         let { sender, rating, feedback, badge, tech, level } = req.body;
+        console.log(badge)
 
         let sendUser = await User.findOne({ name: sender })
 
@@ -119,7 +112,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
 
         senderImg = sendUser ? sendUser.avatar : 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
 
-        const { url, name } = req.params;
+        const { url } = req.params;
         const receiver = req.params.name;
 
 
@@ -165,8 +158,7 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
 })
 
 router.get('/feedbacks/:url/:name', async (req, res) => {
-    const name = req.params.name.replaceAll("%20", " ");
-    const { url } = req.params;
+    const { url,name } = req.params;
     const feedbacks = await Feedback.find({
         receiver: name,
         url
@@ -218,7 +210,6 @@ router.get('/allbadges/:url/:name', async (req, res) => {
             badges.push(user.badges)
         }
     })
-    console.log(badges)
 
     let flattedBadges = badges.flat()
 
@@ -247,11 +238,10 @@ router.get('/allbadges/:url/:name', async (req, res) => {
     })
 })
 
-router.post('/givebadge/:name', async (req, res) => {
-    const { name } = req.params;
-    const { badge } = req.body;
-    await User.findOneAndUpdate({ name }, { $push: { badges: { badge } } })
-    console.log('hey')
+router.post('/givebadge/:url/:name', async (req, res) => {
+    const { name, url } = req.params;
+    let { badge } = req.body;
+    await User.findOneAndUpdate({ name, url }, { $push: { badges: { badge } } })
 })
 
 module.exports = router;

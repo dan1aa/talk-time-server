@@ -1,7 +1,6 @@
 window.onload = function() {
     const input = document.querySelector('.search')
     const allUsers = document.querySelectorAll('.users')
-    console.log(allUsers.length)
     input.oninput = function () {
         let value = this.value.toLowerCase();
         let isEmpty = value.trim() === ''

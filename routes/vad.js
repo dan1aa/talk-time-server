@@ -12,7 +12,6 @@ router.post('/vad/:url/:name', async (req, res) => {
 router.get('/vad/:url/:name', async (req, res) => {
     const { url, name } = req.params;
     const currentUser = await User.findOne({ url, name })
-    console.log(currentUser)
     if (currentUser) {
         res.render('vad', {
             title: "VAD",
