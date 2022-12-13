@@ -3,6 +3,7 @@ const LINK = process.env.LINK
 const General = require('../models/General')
 const User = require('../models/User')
 
+
 router.get('/extension/:url', (req, res) => {
     const { url } = req.params;
     res.render('about', {

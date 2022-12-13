@@ -11,25 +11,13 @@ router.post('/vad/:url/:name', async (req, res) => {
 
 router.get('/vad/:url/:name', async (req, res) => {
     const { url, name } = req.params;
-    const currentUser = await User.findOne({ url, name })
-    if (currentUser) {
-        res.render('vad', {
-            title: "VAD",
-            cssFileName: 'vad',
-            link: LINK,
-            name,
-            url
-        })
-    }
-    else {
-        res.status(404).render('notfound', {
-            title: 'Not found',
-            message: 'User not found',
-            cssFileName: 'feedback'
-        })
-    }
-
-
+    res.render('vad', {
+        title: "VAD",
+        cssFileName: 'vad',
+        link: LINK,
+        name,
+        url
+    })
 })
 
 router.get('/activity/:url', async (req, res) => {
