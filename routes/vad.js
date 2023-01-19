@@ -1,8 +1,6 @@
 const router = require('express').Router()
 const User = require('../models/User')
 
-const LINK = process.env.LINK;
-
 router.post('/vad/:url/:name', async (req, res) => {
     const { name, url } = req.params;
     const { array } = req.body;
@@ -14,13 +12,12 @@ router.get('/vad/:url/:name', async (req, res) => {
     res.render('vad', {
         title: "VAD",
         cssFileName: 'vad',
-        link: LINK,
         name,
         url
     })
 })
 
-router.get('/activity/:url', async (req, res) => {
+router.get('/audioactivity/:url', async (req, res) => {
     const { url } = req.params;
     const currentUsers = await User.find({ url })
     currentUsers.forEach(user => {

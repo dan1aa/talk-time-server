@@ -1,0 +1,36 @@
+<div class="user__badges__container">
+    <header class="header">
+        <div class="header__logo__wrapper">
+            <img class="header__logo" src="/img/menu-logo.png" alt="">
+            <h2 class="header__title">Talk Time</h2>
+        </div>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
+        </div>
+    </header>
+    <div class="user__badges__list__wrapper">
+        <h1 class="user__badges__title animated fadeInLeft">{{name}}`s badges</h1>
+        <div class="user__badges__wrapper">
+            {{#each badges}}
+            <div class="user__badge animated fadeInRight">
+                <img class="user__badge__image" src="/img/{{badge}}" alt="">
+                <div class="user__badge__info">
+                    <span class="user__badge__name">{{convert badge}}</span>
+                    <div class="user__badge__level__wrapper">
+                        <span class="user__badge__percents">{{checkFour count}}%</span>
+                        <div class="user__badge__level">
+                            <div class="user__badge__show__level" style="width: {{checkFour count}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+<script src="/js/userBadges.js"></script>

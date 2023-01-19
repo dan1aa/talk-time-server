@@ -7,6 +7,10 @@ const General = new Schema({
     meetings: {
         type: Array,
         default: []
+    },
+    date: {
+        type: String,
+        default: ''
     }
 })
 

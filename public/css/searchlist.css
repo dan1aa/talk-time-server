@@ -1,0 +1,64 @@
+body {
+    overflow: hidden;
+    background: -webkit-linear-gradient(left , #442496 60%, #7E51F0) 40%;
+}
+.main__header {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: sticky;
+    padding-left: 10px;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+.searchlist__container {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+.searchlist__container::-webkit-scrollbar {
+    width: 0;
+}
+.meeting__card {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    align-items: center;
+    box-shadow: 0px 5px 34px -28px rgba(0,0,0,0.75);
+    background: -webkit-linear-gradient(right, #6c44cf, #6143ad);
+    border-radius: 10px;
+    color: white;
+}
+.meeting__info {
+    display: flex;
+    flex-direction: column;
+}
+.link__button {
+    width: 200px;
+    height: 40px;
+    background: #6143ad;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.dashboard__link {
+    color: white;
+    font-size: 14px;
+}
+.card__url {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 5px;
+}

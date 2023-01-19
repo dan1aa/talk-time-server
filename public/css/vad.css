@@ -1,0 +1,36 @@
+.vad__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    color: white;
+}
+.vad__instructions {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.vad__instructions__first {
+    font-size: 16px;
+}
+.vad__title {
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 28px;
+}
+.ending__meet__button {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #CFD3FE;
+    outline: none;
+    color: #CFD3FE;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: .4s all ease;
+}
+.ending__meet__button:hover {
+    background: #CFD3FE;
+    color: #6c78ff;
+}

@@ -1,30 +1,47 @@
-<div class="main-container">
-   <div class="select-wrapper">
-      <div class="text">
-         <h1>Discover, analyse and leave feedbacks!</h1>
-         <h2>Make your meetings more convinient!</h2>
+<header class="main__header">
+      <img class="header__logo" src="/img/menu-logo.png" alt="">
+      <h2 class="header__title">Talk Time</h2>
+</header>
+<div class="main__wrapper">
+      <div class="main__template">
+            <div class="main__content">
+                  <h1 class="main__title animated fadeInLeft">Discover, analyse<br>and leave feedbacks</h1>
+                  <h1 class="main__title second__title animated fadeInLeft">Make your <b
+                              class="gradient">meetings</b><br>more convinient</h1>
+                  <div class="main__explore animated fadeInRight">Explore</div>
+            </div>
+            <img class="main__poster animated fadeInRight" src="/img/main-poster.png" alt="">
       </div>
-      <div class="top-select">
-         <div class="input-wrapper">
-            <input type="text" placeholder="🔎︎ Seach meetings">
-            <div class="close-meetings-select">▲</div>
-         </div>
-         <div class="select">
-            <span>Choose the meeting name</span>
-            <span>▼</span>
-         </div>
-         <div class="select-question">?</div>
-      </div>
-      <div class="items-wrapper">
-         {{#each generals}}
-            <div class="item">{{name}}</div>
-         {{/each}}
-      </div>
-      <div>
-         <img class="img-question" src="{{link}}/select-question (1).png" alt="">
-         <span class="close-image-span">Click on image to close</span>
-      </div>
-   </div>
-   <img class="banner-img" src="{{link}}/New_10img.png" alt="">
 </div>
-<script src="{{link}}/main.js"></script>
+<div class="explore__template">
+      <div class="explore__content">
+            <h1 class="explore__title wow fadeInLeft">Select your <b class="gradient">meeting</b><br>to start your
+                  journey</h1>
+            <div class="explore__buttons wow fadeInRight">
+                  <div class="explore__question">
+                        ?
+                  </div>
+                  <div class="explore__select">
+                        <div class="select">
+                              <span>Select</span>
+                              <span>▼</span>
+                        </div>
+                        <div class="select__input">
+                              <input class="meeting__search" type="text" placeholder="Enter meeting name">
+                              <span class="close__input">✕</span>
+                        </div>
+                        <div class="select__items">
+                              {{#each generals}}
+                              <div class="select__item">{{name}}</div>
+                              {{/each}}
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <img class="explore__poster wow fadeInLeft" src="/img/explore-poster.png" alt="">
+</div>
+<div class="question__wrapper">
+      <button class="close__question">Close</button>
+</div>
+<script src="/js/main.js"></script>
+<script src="/js/wow.min.js"></script>

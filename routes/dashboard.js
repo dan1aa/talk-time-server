@@ -3,51 +3,46 @@ const User = require('../models/User')
 const Conclusion = require('../models/Conclusion')
 const Feedback = require('../models/Feedback')
 
-const LINK = process.env.LINK;
 
 router.get('/dashboard/:url', async (req, res) => {
     const { url } = req.params;
-    let usersObject = {}
-    const users = await User.find({
-        url
-    })
-    const feedbacks = await Feedback.find({ url })
+    const users = await User.find({url})
+    const conclusions = await Conclusion.find({url})
+    const feedbacks = await Feedback.find({url})
+    let feedbacksByName = {}
+
     users.forEach(user => {
-        usersObject[user.name] = {
+        feedbacksByName[user.name] = {
             name: user.name,
             rating: [],
             avatar: user.avatar,
-            percents: user.percents
         }
     })
-    const conclusions = await Conclusion.find({ url })
-    const ratings = await Feedback.find({ url })
-    if(ratings) {
-        ratings.forEach(rating => {
-            usersObject[rating.receiver]?.rating.push(rating.rating)
-        })
-    }
+
+    feedbacks.forEach(feedback => {
+        feedbacksByName[feedback.receiver].rating.push(feedback.rating)
+    })
+
 
     if (users.length === 0) {
         res.status(404).render('notfound', {
             cssFileName: 'feedback',
             message: 'Meeting URL not found, maybe you enter a wrong URL',
             title: 'Not found',
-            link: LINK,
             url
         })
     }
     else {
         res.render('dashboard', {
             cssFileName: 'dashboard',
-            usersObject,
             title: 'Dashboard',
-            link: LINK,
             url,
+            users,
             conclusions,
             usersLength: users.length,
             feedbacksLength: feedbacks.length,
-            conclusionsLength: conclusions.length
+            conclusionsLength: conclusions.length,
+            feedbacksByName,
         })
     }
 })
@@ -65,14 +60,28 @@ router.post('/percentage/:url', async (req, res) => {
 
 
 router.post('/newconclusion/:url', async (req, res) => {
-    const { url, text } = req.body;
+    const { url, text, tags } = req.body;
 
     const newConclusion = new Conclusion({
         text,
-        url
+        url,
+        tags
     })
 
     await newConclusion.save()
+    res.end(JSON.stringify(newConclusion))
+})
+
+router.post('/importantconclusion', async (req, res) => {
+    const { id } = req.body;
+
+    await Conclusion.findOneAndUpdate({_id: id}, {important: true})
+})
+
+router.delete('/deleteconclusion', async (req, res) => {
+    const { id } = req.body;
+
+    await Conclusion.deleteOne({_id: id})
 })
 
 module.exports = router;

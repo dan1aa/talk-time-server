@@ -5,7 +5,6 @@ const { google } = require('googleapis')
 const fs = require('fs')
 const { spawn } = require('child_process')
 
-const LINK = process.env.LINK;
 const GMAIL_DATA_LOAD_TIME = 1300;
 const { DRIVE_CLIENT_ID, DRIVE_CLIENT_SECRET, DRIVE_REDIRECT_URI, DRIVE_REFRESH_TOKEN } = process.env;
 
@@ -25,6 +24,7 @@ const drive = google.drive({
 router.get('/analyser/:title/:url', async (req, res) => {
     const { url } = req.params;
     const bookmarks = await Bookmark.find({ url });
+    console.log(url)
 
     try {
         (async function () {
@@ -94,7 +94,6 @@ router.get('/analyser/:title/:url', async (req, res) => {
                         res.render('analyser', {
                             title: readyObject.title,
                             cssFileName: 'analyser',
-                            link: LINK,
                             url,
                             bookmarks,
                             videoLink: `${EDITED}.mp4`,
@@ -141,7 +140,6 @@ router.get('/analyser/:title/:url', async (req, res) => {
                                                             chatLink: `${CHAT_ID}.txt`,
                                                             audioLink: `${VIDEO_ID}-editedAudio.mp3`,
                                                             cssFileName: 'analyser',
-                                                            link: LINK,
                                                             url,
                                                             bookmarks,
                                                         })

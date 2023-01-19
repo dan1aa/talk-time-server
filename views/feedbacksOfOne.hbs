@@ -1,30 +1,48 @@
-<div class="feedbacks">
-    <h1 class="title-of-one">{{name}}(`s) feedbacks</h1>
-    {{#if feedbacks}}
+<div class="personal__feedbacks">
+    <header class="header">
+        <div class="header__logo__wrapper">
+            <img class="header__logo" src="/img/menu-logo.png" alt="">
+            <h2 class="header__title">Talk Time</h2>
+        </div>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
+        </div>
+    </header>
+    <div class="personal__feedbacks__content">
+        <h1 class="personal__feedbacks__title animated fadeInRight">{{name}}(`s) feedbacks</h1>
+        {{#if feedbacks}}
         {{#each feedbacks}}
-            <div class="feedback">
-                <div class="sender">
-                    <img class="user-avatar" src={{senderImg}} alt="">
-                    <h2>{{sender}}</h2>
-                    <span class="feedback-object-id" style="display: none;">{{_id}}</span>
-                </div>
-                <div class="text">
-                    <span class="feedback-text">{{feedback}}</span>
-                    <span class="rating">Rating: {{rating}}</span>
-                    <span class="date">{{date}}</span>
+        <div class="personal__feedback animated fadeInLeft">
+            <div class="personal__feedback__sender">
+                <img class="personal__feedback__avatar" src={{senderImg}} alt="">
+                <h2 class="personal__feedback__sender__name">{{sender}}</h2>
+                <span class="personal__feedback__id">{{_id}}</span>
+            </div>
+            <div class="personal__feedback__text__wrapper">
+                <span class="personal__feedback__text">{{feedback}}</span>
+                <span class="personal__feedback__rating__date">⭐{{rating}} &nbsp; <b>{{date}}</b></span>
+                <div class="personal__feedback__buttons__wrapper">
                     {{#if feedbackImg}}
-                        <button class="view-image">View image</button>
-                        <div class="feedback-img-wrapper">
-                            <img class="feedback-img" src="{{link}}{{feedbackImg}}" alt="">
-                            <button class="close-img">Close</button>
-                        </div>
+                    <button class="personal__feedback__view__image__button">View image</button>
                     {{/if}}
-                    <a href="/feedback/{{url}}/{{_id}}"><button class="open-feedback-button">Leave Comment</button></a>
+                    <a href="/feedback/{{url}}/{{_id}}"><button class="personal__feedback__leave__comment">Leave
+                            Comment</button></a>
                 </div>
             </div>
+        </div>
+        <div class="personal__feedback__img__wrapper">
+            <img class="personal__feedback__img" src="{{feedbackImg}}" alt="">
+            <button class="personal__feedback__close__img">Close</button>
+        </div>
         {{/each}}
-    {{else}}
-    <span>No feedbacks yet</span>
-    {{/if}}
+        {{else}}
+        <span class="personal__feedback__empty__text">No feedbacks yet</span>
+        {{/if}}
+    </div>
 </div>
-<script src="{{link}}/feedbackOfOne.js"></script>
+<script src="/js/feedbackOfOne.js"></script>

@@ -1,0 +1,55 @@
+.badge-container {
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+
+}
+.badges__wrapper {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.badges__title {
+    font-size: 36px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.badges__info {
+    width: 800px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.badges__row {
+    width: 500px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.badge {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.08);
+    border-radius: 100px;
+}
+
+.badge img {
+    width: 128px;
+}
+.badges__info__bottom {
+    color: white;
+    font-size: 16px;
+}

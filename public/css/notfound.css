@@ -1,0 +1,18 @@
+.notfound__wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.notfound__text, .notfound__title, .notfound__message {
+    color: white;
+}
+.notfound__title {
+    font-size: 72px;
+}
+
+.notfound__text {
+    margin-bottom: 10px;
+}

@@ -1,30 +1,52 @@
-<div class="about-container">
-    <h1>About Extension</h1>
+<div class="about__container">
+    <header class="header">
+        <div class="header__logo__wrapper">
+            <img class="header__logo" src="/img/menu-logo.png" alt="">
+            <h2 class="header__title">Talk Time</h2>
+        </div>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
+        </div>
+    </header>
     <div class="cards">
-        <div class="card">
-            <img src="{{link}}/dashboard.png" alt="">
-            <h2>Dashboard</h2>
-            <span>Dashboard where users can find useful information</span>
+        <div class="card__row">
+            <div class="card animated fadeInUp">
+                <img class="card__image" src="/img/dashboard.png" alt="">
+                <h2 class="card__title">Dashboard</h2>
+                <span class="card__info">Main dashboard where users can find useful information</span>
+            </div>
+            <div class="card animated fadeInDown">
+                <img class="card__image" src="/img/message.png" alt="">
+                <h2 class="card__title">Messaging</h2>
+                <span class="card__info">Everyone can send a message to anyone, it will be private</span>
+            </div>
+            <div class="card animated fadeInUp">
+                <img class="card__image" src="/img/feedback.png" alt="">
+                <h2 class="card__title">Feedback system</h2>
+                <span class="card__info">Everyone can leave feedback about anyone (it can be anonymous)</span>
+            </div>
         </div>
-        <div class="card">
-            <img src="{{link}}/message.png" alt="">
-            <h2>Messaging</h2>
-            <span>Everyone can send a message to anyone, it will be private</span>
-        </div>
-        <div class="card">
-            <img src="{{link}}/feedback.png" alt="">
-            <h2>Feedback system</h2>
-            <span>Everyone can leave feedback about anyone (it can be anonymous)</span>
-        </div>
-        <div class="card">
-            <img src="{{link}}/chart.png" alt="">
-            <h2>Meeting statistic</h2>
-            <span>Every user can see or download statistic of the meeting</span>
-        </div>
-        <div class="card">
-            <img src="{{link}}/analyse.png" alt="">
-            <h2>Analyser</h2>
-            <span>Everyone can see audio analyser of the meeting (audio activity)</span>
+        <div class="card__row">
+            <div class="card animated fadeInDown">
+                <img class="card__image" src="/img/chart.png" alt="">
+                <h2 class="card__title">Meeting statistic</h2>
+                <span class="card__info">Every user can see or download statistic of the meeting</span>
+            </div>
+            <div class="card animated fadeInUp">
+                <img class="card__image" src="/img/analyse.png" alt="">
+                <h2 class="card__title">Analyser</h2>
+                <span class="card__info">Everyone can see audio analyser of the meeting (audio activity)</span>
+            </div>
+            <div class="card animated fadeInDown">
+                <img class="card__image" src="/img/badge.png" alt="">
+                <h2 class="card__title">Badges</h2>
+                <span class="card__info">Everyone can give appropriate badge if a person has great soft skills</span>
+            </div>
         </div>
     </div>
 </div>

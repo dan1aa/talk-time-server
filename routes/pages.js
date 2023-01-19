@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const LINK = process.env.LINK
 const General = require('../models/General')
 const User = require('../models/User')
 
@@ -8,7 +7,6 @@ router.get('/extension/:url', (req, res) => {
     const { url } = req.params;
     res.render('about', {
         cssFileName: 'about',
-        link: LINK,
         url
     })
 })
@@ -16,8 +14,7 @@ router.get('/extension/:url', (req, res) => {
 router.get('/badges/:url', (req, res) => {
     const { url } = req.params;
     res.render('badges', {
-        cssFileName: 'feedback',
-        link: LINK,
+        cssFileName: 'badges',
         isBadges: true,
         url
     })
@@ -28,7 +25,6 @@ router.get('/main', async (req, res) => {
     res.render('main', {
         cssFileName: 'main',
         title: 'Main',
-        link: LINK,
         generals
     })
 })
@@ -39,7 +35,7 @@ router.post('/addgeneral', async (req, res) => {
     if (!general) {
         const newGeneral = new General({
             name,
-            meetings: [meetUrl]
+            meetings: [meetUrl],
         })
         await newGeneral.save()
     }
@@ -50,10 +46,10 @@ router.post('/addgeneral', async (req, res) => {
 
 router.get('/searchlist/:name', async (req, res) => {
     const { name } = req.params;
-    const general = await General.findOne({ name })
+    const generals = await General.find({ name })
     res.render('searchlist', {
         title: name,
-        meetings: general.meetings,
+        meetings: generals || [],
         cssFileName: 'searchlist'
     })
 })
@@ -64,7 +60,6 @@ router.get('/quizes/:url', (req, res) => {
         cssFileName: 'quizes',
         url,
         title: 'Quizes List',
-        link: LINK
     })
 })
 
@@ -75,7 +70,6 @@ router.get('/quiz/:url/:name', async (req, res) => {
         title: `${name} quiz`,
         cssFileName: 'quizes',
         url,
-        link: LINK,
         name,
         users
     })
@@ -95,7 +89,6 @@ router.get('/quizend/:name/:url', async (req, res) => {
                 name,
                 text: 'Sorry, you already pass this quiz. Try another one!',
                 url,
-                link: LINK
             })
             return;
         }
@@ -109,7 +102,6 @@ router.get('/quizend/:name/:url', async (req, res) => {
         url,
         success,
         badgeName,
-        link: LINK
     })
 
 })

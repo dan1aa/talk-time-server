@@ -1,54 +1,110 @@
-<div class="dashboard-container">
-    <div class="summary">
-        <div class="switch-wrapper">
-            <label class="switch">
-                <input class="theme-checkbox" type="checkbox">
-                <span class="slider"></span>
-            </label>
-            <span>Dark theme</span>
-        </div>
-        <div class="meeting-conclusions">
-            <input class="conclusion-input" type="text" placeholder="Enter meeting summaries"
-                name="meeting-conclusions">
-            <button class="add-conclusion">Add</button>
-        </div>
-        <div class="conclusions">
-            {{#if conclusions}}
-            {{#each conclusions}}
-            <div class="conclusion">
-                <li>{{text}}</li>
+<div class="dashboard__container">
+    <header class="header">
+        <a href="/main">
+            <div class="header__logo__wrapper">
+                <img class="header__logo" src="/img/menu-logo.png" alt="">
+                <h2 class="header__title">Talk Time</h2>
             </div>
-            {{/each}}
-            {{else}}
-            <span class="no-conclusion">No conclusions...Try to add one!</span>
-            {{/if}}
+        </a>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
         </div>
-    </div>
-    <div class="column">
-        <div class="meeting-users">
-            <h1>Meeting participants</h1>
-            <div class="meeting-participants">
-                {{#each usersObject}}
-                <div class="participant">
-                    <div>
-                        <img src="{{avatar}}" alt="">
-                        <span class="username-graph">{{name}}</span>
+    </header>
+    <div class="dashboard__content">
+        <div class="dashboard__content__wrapper dashboard__content__wrapper__left">
+            <div class="dashboard__card dashboard__conclusions animated fadeInLeft">
+                <h1 class="conclusions__title">Meeting Conclusions</h1>
+                <div class="conclusion__input__wrapper">
+                    <input placeholder="Enter a meeting conclusion" class="conclusion__input" type="text"
+                        name="meeting-conclusions">
+                    <div class="tags__select__wrapper">
+                        
+                        <div class="tags__select">
+                            <span class="tags__select__text">Select tag(s)</span>
+                            <span class="tags__select__arrow">▼</span>
+                            <span class="tags__select__close">✕</span>
+                        </div>
+                        <div class="tags__list">
+                            <div class="tag__element">
+                                <span class="tag__name">Question</span>
+                                <span class="is__checked"></span>
+                            </div>
+                            <div class="tag__element">
+                                <span class="tag__name">Problem</span>
+                                <span class="is__checked"></span>
+                            </div>
+                            <div class="tag__element">
+                                <span class="tag__name">Task</span>
+                                <span class="is__checked"></span>
+                            </div>
+                        </div>
                     </div>
-                    <span style="color:">★ {{average rating}}</span>
-                    <span class="user-percents">{{percents}}</span>
+                    <button class="add__conclusion">Add</button>
                 </div>
-                {{/each}}
+                <div class="conclusions">
+                    {{#if conclusions}}
+                    {{#each conclusions}}
+                        <div class="conclusion__wrapper">
+                                {{#each tags}}
+                                    <span class="conclusion__tag">{{this.tag}}</span>
+                                {{/each}}
+                            <span class="conclusion">- {{text}}</span>
+                            {{#if important}}
+                                <span class="conclusion__star">★</span>
+                            {{else}}
+                                <span class="conclusion__star">☆</span>
+                            {{/if}}
+                            <span class="conclusion__id">{{_id}}</span>
+                            <img class="conclusion__delete" src="/img/trash.png" alt="">
+                        </div>
+                    {{/each}}
+                    {{else}}
+                    <span class="empty__conclusions__warning">No conclusions ...Add a new one!</span>
+                    {{/if}}
+                    <span class="empty__conclusions__warning" style="display: none;">No conclusions ...Add a new one!</span>
+                </div>
+            </div>
+            <div class="dashboard__card dashboard__info animated fadeInLeft">
+                <div class="info__cards">Number of feedbacks: {{feedbacksLength}}</div>
+                <div class="info__cards">Number of users: {{usersLength}}</div>
+                <div class="info__cards">Number of conclusions: {{conclusionsLength}}</div>
+                <div class="info__cards">Meet link: {{url}}</div>
             </div>
         </div>
-        <div class="chart">
-            <canvas id="myChart"></canvas>
-        </div>
-        <div class="overall">
-            <div><span>Number of feedbacks:&nbsp; </span><span> {{feedbacksLength}}</span></div>
-            <div><span>Number of users:&nbsp; </span><span> {{usersLength}}</span></div>
-            <div><span>Number of conclusions:&nbsp; </span><span> {{conclusionsLength}}</span></div>
-            <div><span>Meet link:&nbsp; </span><span> {{url}}</span></div>
+        <div class="dashboard__content__wrapper">
+            <div class="dashboard__card dashboard__users animated fadeInRight">
+                <h1 class="meeting__participants__title">Meeting participants</h1>
+                <div class="meeting__participants">
+                    {{#each feedbacksByName}}
+                    <div class="meeting__participant">
+                        <img class="participant__avatar" src="{{avatar}}" alt="avatar">
+                        <span class="participant__name">{{name}}</span>
+                        <span class="participant__rating">★ {{average rating}}</span>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="dashboard__card dashboard__statistic animated fadeInRight">
+                <div class="statistics__wrapper">
+                    <h1 class="statistics__title">Speaking Time</h1>
+                    {{#each users}}
+                    <div class="statistics__bar">
+                        <span class="statistics__name">{{name}}</span>
+                        <div class="statistics__percents__wrapper">
+                            <div class="statistics__ratio"></div>
+                            <div class="statistics__percents">{{percents}}</div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<script src="{{link}}/dashboard.js"></script>
+
+<script src="/js/dashboard.js"></script>

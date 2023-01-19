@@ -1,0 +1,87 @@
+.user__badges__list__wrapper {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user__badges__container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.user__badges__title {
+    margin-bottom: 20px;
+    color: white;
+}
+
+.user__badges__wrapper {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
+    justify-content: center;
+    overflow-y: scroll;
+}
+.user__badges__wrapper::-webkit-scrollbar {
+    width: 3px;
+}
+.user__badges__wrapper::-webkit-scrollbar-thumb {
+    background: #ceafff;
+}
+.user__badges__wrapper::-webkit-scrollbar-track {
+    display: none;
+}
+.user__badge {
+    width: 15%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.user__badge__image {
+    width: 48px;
+    border-radius: 100px;
+    margin-right: 5px;
+}
+
+.user__badge__info {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3px;
+    color: white;
+}
+.user__badge__name {
+    margin-bottom: 3px;
+}
+.user__badge__level__wrapper {
+    width: 100%;
+    height: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.user__badge__level {
+    width: 60%;
+    height: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    margin-left: 5px;
+}
+.user__badge__show__level{
+    width: 20%;
+    height: 100%;
+    background: #af9dfa;
+}

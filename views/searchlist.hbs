@@ -1,10 +1,20 @@
-<div class="every-meeting-container">
+<div class="searchlist__container">
+    <header class="main__header">
+        <img class="header__logo" src="/img/menu-logo.png" alt="">
+        <h2 class="header__title">Talk Time</h2>
+    </header>
     {{#each meetings}}
-    <div class="every-meeting">
-        <span class="meet-url-span">{{this}}</span>
-        <a href="https://talk-time-server.onrender.com/dashboard/{{this}}">
-            <div>Go to dashboard page</div>
+    <div class="meeting__card animated fadeInLeft">
+        <div class="meeting__info">
+            <span class="card__url">{{name}}</span>
+            <span class="card__date">{{date}}</span>
+        </div>
+        <a class="dashboard__link" href="/dashboard/{{name}}">
+            <div class="link__button">Go to dashboard page</div>
         </a>
     </div>
     {{/each}}
+    <script>
+
+    </script>
 </div>

@@ -5,7 +5,6 @@ let multer = require('multer')
 const path = require('path')
 const config = require('../badge_config/config')
 
-const LINK = process.env.LINK
 const DEFAULT_SELECT_BADGE = 'Choose the Badge (not necessarily)'
 const DEFAULT_TECH_BADGE = 'Select Technology'
 
@@ -33,7 +32,6 @@ router.get('/feedbacks/:url', async (req, res) => {
             cssFileName: 'feedback',
             message: 'Meeting URL not found, maybe you entered a wrong URL',
             title: 'Not found',
-            link: LINK,
             url
         })
     }
@@ -42,7 +40,6 @@ router.get('/feedbacks/:url', async (req, res) => {
             cssFileName: 'feedback',
             users,
             title: 'Feedbacks',
-            link: LINK,
             url
         })
     }
@@ -74,7 +71,6 @@ router.post('/feedbacks/:url', async (req, res) => {
             cssFileName: 'feedback',
             message: 'Invalid Token, access denied',
             title: 'Not found',
-            link: LINK,
         })
     }
 })
@@ -83,11 +79,10 @@ router.get('/newfeedback/:url/:name', async (req, res) => {
     const { url , name } = req.params;
     const users = await User.find({ url })
     res.render('form', {
-        cssFileName: 'feedback',
+        cssFileName: 'form',
         name,
         url,
         title: 'Leave feedback',
-        link: LINK,
         users
     })
 })
@@ -100,7 +95,6 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         let senderImg;
 
         let { sender, rating, feedback, badge, tech, level } = req.body;
-        console.log(badge)
 
         let sendUser = await User.findOne({ name: sender })
 
@@ -110,14 +104,13 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
             badge = `${key}${value}.png`
         }
 
-        senderImg = sendUser ? sendUser.avatar : 'https://www.nicepng.com/png/detail/933-9332131_profile-picture-default-png.png'
+        senderImg = sendUser ? sendUser.avatar : 'https://cdn-icons-png.flaticon.com/512/1177/1177568.png'
 
         const { url } = req.params;
         const receiver = req.params.name;
 
 
         if (badge !== DEFAULT_SELECT_BADGE) {
-            console.log(badge)
             await User.findOneAndUpdate({ name: receiver, url }, { $push: { badges: { badge } } })
         }
         if(level || tech) {
@@ -145,11 +138,10 @@ router.post('/newfeedback/:url/:name', async (req, res) => {
         await newFeedback.save()
             .then(() => {
                 res.render('success', {
-                    cssFileName: 'feedback',
+                    cssFileName: 'success',
                     url,
                     title: 'Success',
                     message: 'Success',
-                    link: LINK
                 })
             })
 
@@ -164,10 +156,9 @@ router.get('/feedbacks/:url/:name', async (req, res) => {
         url
     })
     res.render('feedbacksOfOne', {
-        cssFileName: 'feedback',
+        cssFileName: 'feedbacksOfOne',
         name,
         feedbacks,
-        link: LINK,
         url
     })
 })
@@ -180,7 +171,6 @@ router.get('/feedback/:url/:id', async (req, res) => {
         title: "Comment",
         cssFileName: 'feedbackComment',
         feedback,
-        link: LINK,
         users,
         url
     })
@@ -191,16 +181,15 @@ router.post('/newcomment/:url/:id', async (req, res) => {
     const { commentName, comment } = req.body;
     await Feedback.findOneAndUpdate({ _id: id, url }, { $push: { comments: { commentName, comment, date: new Date().toLocaleDateString() } } })
     res.render('success', {
-        cssFileName: 'feedback',
+        cssFileName: 'success',
         title: 'Success',
         url,
         message: 'Success',
-        link: LINK
     })
 })
 
 
-router.get('/allbadges/:url/:name', async (req, res) => {
+router.get('/badges/:url/:name', async (req, res) => {
     const { name, url } = req.params;
     let users = await User.find({ name })
     let badges = []
@@ -228,11 +217,10 @@ router.get('/allbadges/:url/:name', async (req, res) => {
     })
 
 
-    res.render('badgesDisplay', {
+    res.render('userBadges', {
         title: `${name}'s badges`,
-        cssFileName: 'feedback',
+        cssFileName: 'userBadges',
         badges: flattedBadges,
-        link: LINK,
         url,
         name
     })

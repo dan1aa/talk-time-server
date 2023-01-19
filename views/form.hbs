@@ -1,28 +1,28 @@
-<div class="send-feedback-wrapper">
-    <div class="form-wrapper">
-        <h1 class="feedback-title">Your feedback about {{name}}</h1>
-        <form action="/newfeedback/{{url}}/{{name}}" method="POST" enctype="multipart/form-data" class="feedback-form">
-            <select name="sender" id="sender-input" class="sender-input" required>
+<div class="send__feedback__wrapper">
+    <div class="form__wrapper">
+        <h1 class="send__feedback__title animated fadeInRight">Your feedback about {{name}}</h1>
+        <form action="/newfeedback/{{url}}/{{name}}" method="POST" enctype="multipart/form-data" class="send__feedback__form">
+            <select name="sender" class="sender__input send__feedback__select animated fadeInLeft" required>
                 <option hidden selected value="">Choose your name</option>
                 {{#each users}}
                 <option value="{{name}}">{{name}}</option>
                 {{/each}}
                 <option hidden value="Anonymous">Anomymous</option>
             </select>
-            <span class="selected">Selected: </span>
-            <div class="anomymous-feedback">
-                <input type="checkbox" class="anonymous">
-                <span>Anomymous feedback</span>
+            <span class="selected animated fadeInRight">Selected: </span>
+            <div class="anomymous__feedback__wrapper animated fadeInLeft">
+                <input type="checkbox" class="anonymous__checkbox">
+                <span class="anonymous__feedback__title">Anomymous feedback</span>
             </div>
-            <textarea minlength="100" maxlength="400" required name="feedback"
+            <textarea class="send__feedback__body animated fadeInRight" minlength="100" maxlength="400" required name="feedback"
                 placeholder="Enter your feedback"></textarea>
-            <span class="characters-count"></span>
-            <label for="rating">Select rate from 0 to 5</label>
-            <input class="rating-input" required name="rating" type="number" value="0" max="5" min="0">
-            <label for="file">If you have some photo or video that can be useful it this feedback you can put it
+            <span class="send__feedback__characters"></span>
+            <label class="send__feedback__label animated fadeInLeft" for="rating">Select rate from 0 to 5</label>
+            <input class="send__feedback__rating send__feedback__input animated fadeInLeft" required name="rating" type="number" value="0" max="5" min="0">
+            <label class="send__feedback__label animated fadeInRight" for="file">If you have some photo or video that can be useful it this feedback you can put it
                 here</label>
-            <input class="file" name="file" type="file">
-            <select name="badge" id="select" class="select">
+            <input class="send__feedback__file send__feedback__input animated fadeInRight" name="file" type="file">
+            <select name="badge" id="select" class="select send__feedback__select animated fadeInLeft">
                 <option hidden selected>Choose the Badge (not necessarily)</option>
                 <option value="Active Listener">Active Listener</option>
                 <option value="Areas of Agreement">Areas of Agreement</option>
@@ -55,15 +55,15 @@
                 <option value="To Do Tracker">To Do Tracker</option>
                 <option value="Zen Enviroment">Zen Enviroment</option>
             </select>
-            <div class="techs-select-wrapper">
-                <select name="level" class="tech-level" name="level">
+            <div class="send__feedback__techs__wrapper">
+                <select name="level" class="send__feedback__select animated fadeInRight" name="level">
                     <option hidden selected>Select level</option>
                     <option value="1">1 level</option>
                     <option value="2">2 level</option>
                     <option value="3">3 level</option>
                     <option value="4">4 level</option>
                 </select>
-                <select name="tech" class="apprentice-select">
+                <select name="tech" class="send__feedback__select animated fadeInRight">
                     <option hidden selected>Select Technology</option>
                     <option value="ml1_">Machine Learning</option>
                     <option value="coding2_">Coding</option>
@@ -75,8 +75,8 @@
                     <option value="coach8_">Coaching</option>
                 </select>
             </div>
-            <button class="send-feedback" type="submit">Send</button>
+            <button class="send__feedback__button animated fadeInRight" type="submit">Send</button>
         </form>
     </div>
 </div>
-<script src="{{link}}/createFeedback.js"></script>
+<script src="/js/createFeedback.js"></script>

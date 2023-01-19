@@ -1,28 +1,45 @@
-<div class="list-container">
-    <input class="search" type="text" placeholder="🔎︎ Seach participants">
-    <h1 class="main-title">Leave feedback about meeting participants!</h1>
-    {{#each users}}
-    <div class="user-item">
-        <div class="user-info">
-            <img class="user-avatar" src="{{avatar}}" alt="">
-            <span class="username-span">{{name}}</span>
+<div class="feedbacks__container">
+    <header class="header">
+        <div class="header__logo__wrapper">
+            <img class="header__logo" src="/img/menu-logo.png" alt="">
+            <h2 class="header__title">Talk Time</h2>
         </div>
-        <div class="user-buttons">
-            {{#if badges}}
-            <button class="see-badges">See badges</button>
-            {{else}}
-            <div style="width: 150px; display: flex; justify-content: center; align-items: center; margin-right: 10px;">
-                <span>No badges yet</span>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
+        </div>
+    </header>
+    <div class="feedbacks__content">
+        <input class="feedbacks__search animated fadeInLeft" type="text" placeholder="🔎︎ Seach participants">
+        {{#each users}}
+        <div class="feedbacks__users">
+            <div class="feedbacks__user animated fadeInRight">
+                <div class="feedbacks__user__info">
+                    <img class="feedbacks__user__avatar" src="{{avatar}}" alt="">
+                    <span class="feedbacks__user__name">{{name}}</span>
+                </div>
+                <div class="feedbacks__user__buttons">
+                    {{#if badges}}
+                    <button class="feedbacks__user__button feedbacks__see__badges">See badges</button>
+                    {{else}}
+                    <div class="feedbacks__empty__badges" style="">
+                        <span>No badges yet</span>
+                    </div>
+                    {{/if}}
+                    <button class="feedbacks__user__button feedbacks__see__feedbacks">See feedbacks</button>
+                    <button class="feedbacks__user__button feedbacks__leave__feedback">Leave feedback</button>
+                </div>
             </div>
-            {{/if}}
-            <button class="see-feedback">See feedbacks</button>
-            <button class="leave-feedback">Leave feedback</button>
         </div>
-    </div>
-    {{/each}}
-    <div style="display: flex;">
-        <button class="refresh">Refresh</button>
+        {{/each}}
+        <div class="feedbacks__refresh__wrapper animated fadeInLeft">
+            <button class="feedbacks__refresh">Refresh</button>
+        </div>
     </div>
 </div>
 
-<script src="{{link}}/feedback.js"></script>
+<script src="/js/feedback.js"></script>

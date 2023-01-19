@@ -1,19 +1,34 @@
-<div class="vad-container">
-    <h1>Users voice activity</h1>
-    <div class="activity">
+<div class="activity__container">
+    <header class="header">
+        <div class="header__logo__wrapper">
+            <img class="header__logo" src="/img/menu-logo.png" alt="">
+            <h2 class="header__title">Talk Time</h2>
+        </div>
+        <div class="header__menu">
+            <a href="/main" class="header__menu__item">Main</a>
+            <a href="/dashboard/{{url}}" class="header__menu__item">Dashboard</a>
+            <a href="/audioactivity/{{url}}" class="header__menu__item">Audio activity</a>
+            <a href="/feedbacks/{{url}}" class="header__menu__item">Feedbacks</a>
+            <a href="/badges/{{url}}" class="header__menu__item">Badges</a>
+            <a href="/extension/{{url}}" class="header__menu__item">Extension</a>
+        </div>
+    </header>
+    <div class="activity__wrapper">
         {{#each users}}
-        <div class="user-activity">
+        <div class="user__activity animated fadeInRight">
             <h3>{{name}}`s voice activity</h3>
-            <div style="display: flex; align-items: flex-end;">
+            <div class="peaks__wrapper">
                 {{#if peaks}}
                     {{#each peaks}}
-                        <div class="tag" style="height: {{mult this 2}}px;"></div>
+                        <div class="peak" style="height: {{mult this 5}}px;"></div>
                     {{/each}}
                 {{else}}
-                    <span>No data</span>
+                    <span class="user__activity__nodata">No data</span>
                 {{/if}}
             </div>
         </div>
+    
         {{/each}}
     </div>
 </div>
+<script src="/js/activity.js"></script>

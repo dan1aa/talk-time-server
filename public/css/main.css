@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'DM Sans', sans-serif;
+}
+.question__wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/img/question.png');
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 20px;
+  z-index: 111;
+}
+.container {
+  flex-direction: column;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+.menu {
+  display: none !important;
+}
+
+.gradient {
+  background: -webkit-linear-gradient(right, #7E51F0, #d7c7ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main__header {
+  width: 100vw;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 26px;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+.main__wrapper, .explore__wrapper {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.explore__template, .main__template {
+  width: 100vw;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main__poster {
+  height: 400px;
+}
+.explore__poster {
+  width: 500px;
+}
+.main__content, .explore__content {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.main__content, .explore__content{
+  margin-right: 100px;
+}
+.main__title, .explore__title {
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+}
+.explore__title {
+  margin-bottom: 20px;
+}
+.second__title {
+  margin-bottom: 10px;
+}
+.main__explore, .close__question {
+  width: 150px;
+  height: 45px;
+  background: -webkit-linear-gradient(right, #7E51F0, #bca2ff);
+  border-radius: 5px;
+  color: #FDF4E0;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select {
+  width: 300px;
+  height: 60px;
+  border-radius: 10px;
+  background: -webkit-linear-gradient(right, #7E51F0, #bca2ff);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+.select__items {
+  max-height: 180px;
+  width: 300px;
+  height: 180px;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: visibility 0.4s, opacity 0.5s ease;
+  overflow-y: scroll;
+}
+.select__item {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  color: white;
+  background: -webkit-linear-gradient(right, #7E51F0, #bca2ff);
+  background-size: 100%; 
+}
+.select__items::-webkit-scrollbar {
+  width: 0;
+}
+.select__input {
+  width: 300px;
+  height: 60px;
+  border-radius: 10px;
+  background: -webkit-linear-gradient(right, #7E51F0, #bca2ff);
+  display: none;
+  color: white;
+}
+.meeting__search {
+  background: transparent;
+  width: 88%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding: 15px;
+  color: white;
+
+}
+.meeting__search::placeholder {
+  color: white;
+  font-size: 16px;
+  opacity: .8;
+}
+.close__input {
+  cursor: pointer;
+}
+.explore__question {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #bca2ff;
+  border-radius: 10px;
+  margin-right: 10px;
+  color: white;
+  cursor: pointer;
+}
+.explore__buttons {
+  display: flex;
+  width: fit-content;
+  height: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  body {
+    background-image: none;
+  }
+  .main__poster, .explore__poster {
+    display: none;
+  }
+  .main__content, .explore__content {
+    margin: 0;
+    align-items: center;
+  }
+  .main__title, .explore__title {
+    font-size: 72px;
+    text-align: center;
+  }
+  .main__explore {
+    width: 300px;
+    height: 60px;
+    font-size: 30px;
+  }
+  .explore__buttons {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+  }
+  .select__input, .select, .select__items {
+    width: 430px;
+  }
+}

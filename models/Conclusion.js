@@ -8,6 +8,14 @@ const Conclusion = new Schema({
     url: {
         type: String,
         required: true
+    },
+    important: {
+        type: Boolean,
+        default: false
+    },
+    tags: {
+        type: Array,
+        default: []
     }
 })
 
